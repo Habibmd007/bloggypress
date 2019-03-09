@@ -6,13 +6,15 @@
     <div class="container">
         <div class="row">
             <div class="col-md-8 pb--60">
+
+
                 <!-- Post Item Start -->
                 <div class="post--item post--single text-center">
                     <!-- Post Slider Start -->
                     <div class="post--slider owl-carousel" data-owl-nav="true" data-owl-dots="true" data-owl-margin="10">
-                        <img src="img/posts-img/post-slider-01.jpg" alt="">
-                        <img src="img/posts-img/post-slider-02.jpg" alt="">
-                        <img src="img/posts-img/post-slider-03.jpg" alt="">
+                        @foreach ($sliders as $slider)
+                            <img src="{{$slider->img}}" alt="">
+                        @endforeach
                     </div>
                     <!-- Post Slider End -->
 
@@ -99,6 +101,8 @@
                         <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Perferendis ducimus quos suscipit repellat explicabo a minima eius at aperiam neque, ipsam officiis! Eligendi eum repellat laboriosam, delectus doloremque hic fugiat.</p>
                     </div>
                     <!-- Post Content End -->
+                    <hr>
+
 
                     <!-- Post Footer Start -->
                     <div class="post--footer clearfix pt--40">
@@ -146,6 +150,14 @@
                     <!-- Post Footer End -->
                 </div>
                 <!-- Post Item End -->
+
+
+
+
+
+
+
+
 
                 <!-- Pager Start -->
                 <div class="pager--wrapper pt--50">

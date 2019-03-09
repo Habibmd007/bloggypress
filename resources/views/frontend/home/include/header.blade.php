@@ -66,7 +66,7 @@
                 <div class="container">
                     <!-- Header Date Start -->
                     <div class="header--date">
-                        <p>Thursday <span class="text-primary">10 March</span> 2017</p>
+                        <p>{{date("l")}} <span class="text-primary">{{date("j F")}}</span>{{date(" Y")}}</p>
                     </div>
                     <!-- Header Date End -->
 
@@ -101,7 +101,7 @@
                 <div class="container">
                     <!-- Header Logo Start -->
                     <div class="header--logo">
-                        <a href="index.html">
+                        <a href="{{route('/')}}">
                             <img src="{{asset('/')}}img/logo.png" alt="">
                         </a>
                     </div>

@@ -4,6 +4,9 @@ namespace App\Http\Controllers\front;
 
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use App\Bio;
+use App\Post;
+use App\Info;
 
 class FrontController extends Controller
 {
@@ -14,12 +17,21 @@ class FrontController extends Controller
 
     public function about()
     {
-        return view('frontend.about.aboutpage');
+        $bios= Bio::where('status', 1)
+                    ->orderBy('id', 'DESC')
+                    ->get();
+
+        $posts= Post::where('status', 1)
+                    ->orderBy('id', 'DESC')
+                    ->get();
+
+        $infs= Info::where('status', 1)
+                    ->orderBy('id', 'DESC')
+                    ->get();
+
+        return view('frontend.about.aboutpage',compact('bios', 'posts', 'infs'));
     }
-    public function blogpages()
-    {
-        return view('frontend.pages.blogpage');
-    }
+    
     public function author()
     {
         return view('frontend.pages.author');

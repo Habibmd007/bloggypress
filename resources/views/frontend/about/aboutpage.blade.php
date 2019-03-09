@@ -4,16 +4,18 @@
 <section class="section">
     <div class="container">
         <!-- Post Author Start -->
+        @foreach ($bios as $item)
         <div class="post--author clearfix pb--50">
-            <div class="img float--left">
-                <img src="img/blog-img/post-author.jpg" alt="" class="img-circle">
-            </div>
 
+            <div class="img float--left">
+                <img src="{{$item->img}}" alt="" class="img-circle">
+            </div>
+                
             <div class="info ov--h">
                 <div class="header clearfix">
-                    <h2 class="name h6">Karen Rosalie</h2>
+                    <h2 class="name h6">{{$item->name}}</h2>
 
-                    <p class="role float--left">Photographer &amp; Blogger</p>
+                    <p class="role float--left">{{$item->desig}}</p>
 
                     <div class="social float--right">
                         <ul class="nav">
@@ -26,17 +28,22 @@
                 </div>
 
                 <div class="bio">
-                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Voluptate tenetur eius quaerat ratione, accusamus vitae. Expedita sapiente odit, saepe vero, nobis magni cupiditate possimus sed ipsa exercitationem quos, libero voluptatibus. Ex eum omnis consequatur sapiente ea corrupti excepturi explicabo, blanditiis quaerat temporibus ducimus facere reiciendis quae, velit earum qui ut vitae cumque accusamus architecto.</p>
+                    <p>{{$item->text}}</p>
                 </div>
             </div>
+            
         </div>
-        <!-- Post Author End -->
+        @endforeach
 
+
+        <!-- Post Author End -->
+        @foreach ($posts as $item)
+            
         <div class="row">
             <div class="col-md-6 pb--60">
                 <!-- Video Block Start -->
                 <div class="video--block embed-responsive embed-responsive-16by9">
-                    <iframe src="https://www.youtube.com/embed/aqz-KE-bpKQ?rel=0&amp;controls=0&amp;showinfo=0&amp;wmode=transparent" allowfullscreen=""></iframe>
+                    <iframe src="{{$item->video}}" allowfullscreen=""></iframe>
                 </div>
                 <!-- Video Block End -->
             </div>
@@ -44,90 +51,44 @@
             <div class="col-md-6 pb--60">
                 <!-- Text Block Start -->
                 <div class="text--block">
-                    <h3>It is a long established fact that a reader will be distracted by the readable content</h3>
+                    <h3>{{$item->head}}</h3>
 
-                    <p>It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal making it look like readable english many desktop.</p>
+                    <p>{{$item->text}}</p>
 
                     <blockquote>
-                        <p>It is a long established fact that a reader will be distracted by the readable content of a page when looking.</p>
+                        <p>{{$item->qoute}}</p>
                     </blockquote>
                 </div>
                 <!-- Text Block End -->
             </div>
         </div>
+        @endforeach
+
+
+        
 
         <div class="row" data-trigger="fitrow">
+
+            @foreach ($infs as $inf )
+                
             <div class="col-md-3 col-xs-6 col-xxs-12 pb--60">
                 <!-- Info Block Start -->
                 <div class="info--block text-center">
                     <div class="icon bg-primary">
-                        <i class="fa fa-globe"></i>
+                        <i class="fa {{$inf->font}}"></i>
                     </div>
 
                     <div class="title text-uppercase">
-                        <h3 class="h4">Technology Articles</h3>
+                        <h3 class="h4">{{$inf->head}}</h3>
                     </div>
 
                     <div class="desc fs--14">
-                        <p>Aliquam quam laudantium suscipit ullam aut perferendis vel dicta blanditiis eligendi ratione consequatur.</p>
+                        <p>{{$inf->text}}</p>
                     </div>
                 </div>
                 <!-- Info Block End -->
             </div>
-
-            <div class="col-md-3 col-xs-6 col-xxs-12 pb--60">
-                <!-- Info Block Start -->
-                <div class="info--block text-center">
-                    <div class="icon bg-primary">
-                        <i class="fa fa-pencil-square-o"></i>
-                    </div>
-
-                    <div class="title text-uppercase">
-                        <h3 class="h4">Copywriting</h3>
-                    </div>
-
-                    <div class="desc fs--14">
-                        <p>Aliquam quam laudantium suscipit ullam aut perferendis vel dicta blanditiis eligendi ratione consequatur.</p>
-                    </div>
-                </div>
-                <!-- Info Block End -->
-            </div>
-
-            <div class="col-md-3 col-xs-6 col-xxs-12 pb--60">
-                <!-- Info Block Start -->
-                <div class="info--block text-center">
-                    <div class="icon bg-primary">
-                        <i class="fa fa-envelope-open-o"></i>
-                    </div>
-
-                    <div class="title text-uppercase">
-                        <h3 class="h4">Formal Letter</h3>
-                    </div>
-
-                    <div class="desc fs--14">
-                        <p>Aliquam quam laudantium suscipit ullam aut perferendis vel dicta blanditiis eligendi ratione consequatur.</p>
-                    </div>
-                </div>
-                <!-- Info Block End -->
-            </div>
-
-            <div class="col-md-3 col-xs-6 col-xxs-12 pb--60">
-                <!-- Info Block Start -->
-                <div class="info--block text-center">
-                    <div class="icon bg-primary">
-                        <i class="fa fa-clone"></i>
-                    </div>
-
-                    <div class="title text-uppercase">
-                        <h3 class="h4">White Paper</h3>
-                    </div>
-
-                    <div class="desc fs--14">
-                        <p>Aliquam quam laudantium suscipit ullam aut perferendis vel dicta blanditiis eligendi ratione consequatur.</p>
-                    </div>
-                </div>
-                <!-- Info Block End -->
-            </div>
+            @endforeach
         </div>
     </div>
 </section>
