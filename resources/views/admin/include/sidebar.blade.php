@@ -111,26 +111,30 @@
             </a>
             <ul class="nav nav-treeview">
 
-              <li class="nav-item">
-                <a href="{{route('slider')}}" class="nav-link">
-                  <i class="fa fa-circle-o nav-icon"></i>
-                  <p>Slider</p>
-                </a>
-              </li>
+              
 
               <li class="nav-item">
-                <a href="{{route('posts')}}" class="nav-link">
+                <a href="{{route('blog-posts')}}" class="nav-link">
                   <i class="fa fa-circle-o nav-icon"></i>
                   <p>Post</p>
                 </a>
               </li>
               <li class="nav-item">
-                <a href="{{route('info')}}" class="nav-link">
+                <a href="{{route('blog-cate')}}" class="nav-link">
                   <i class="fa fa-circle-o nav-icon"></i>
-                  <p>Info</p>
+                  <p>Blog Categpries</p>
                 </a>
               </li>
             </ul>
+          </li>
+          
+          <li class="nav-item has-treeview">
+            <a href="{{route('photos')}}" class="nav-link">
+              <i class="nav-icon fa fa-image"></i>
+              <p>
+                Photos
+              </p>
+            </a>
           </li>
          
          

@@ -12,7 +12,7 @@
             <div class="card-body">
                 <div class="post--author clearfix pb--50">
                     <div class="img float--left">
-                        <img src="{{$item->img}}" alt="" class="img-circle">
+                        <img src="{{$item->img}}" alt="" class="img-circle" height="100">
                     </div>
         
                     <div class="info ov--h">

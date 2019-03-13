@@ -42,6 +42,7 @@ class AboutController extends Controller
         $bio = new Bio();
         $imgurl =$bio->imgfinal($request);
         $bio->name = $request->name;
+        $bio->user_id = $request->user_id;
         $bio->desig = $request->desig;
         $bio->text = $request->text;
         $bio->status = $request->status;
@@ -55,6 +56,7 @@ class AboutController extends Controller
 
         $imgurl =$bio->imgfinalUpdate($request, $bio);
         $bio->name = $request->name;
+        $bio->user_id = $request->user_id;
         $bio->desig = $request->desig;
         $bio->text = $request->text;
         $bio->status = $request->status;

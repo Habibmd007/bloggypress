@@ -13,7 +13,11 @@
             <!-- text input -->
             <div class="form-group">
               <label>Heading</label>
-              <input name="head"  type="text" class="form-control" placeholder="Name">
+              <input name="head"  type="text" class="form-control" placeholder="Optional">
+            </div>
+            <div class="form-group">
+              <label>Post ID</label>
+              <input name="post_id"  type="text" class="form-control" value="{{$post_id}}">
             </div>
 
             <div class="form-group">

@@ -15,9 +15,10 @@ class CreateSlidersTable extends Migration
     {
         Schema::create('sliders', function (Blueprint $table) {
             $table->bigIncrements('id');
+            $table->integer('blogpost_id');
             $table->string('img');
             $table->string('head')->nullable();
-            $table->string('status');
+            $table->integer('status')->default(1);
             $table->timestamps();
         });
     }

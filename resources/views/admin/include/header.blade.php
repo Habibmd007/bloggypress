@@ -24,6 +24,14 @@
   <link rel="stylesheet" href="{{asset('/')}}plugins/daterangepicker/daterangepicker-bs3.css">
   <!-- bootstrap wysihtml5 - text editor -->
   <link rel="stylesheet" href="{{asset('/')}}plugins/bootstrap-wysihtml5/bootstrap3-wysihtml5.min.css">
+   {{--ckeditor plugins--}}
+   <script src="{{ asset('/') }}ckeditor/ckeditor.js"></script>
+   <script src="{{ asset('/') }}ckeditor/samples/js/sample.js"></script>
+   <link rel="stylesheet" href="{{ asset('/') }}ckeditor/samples/css/samples.css">
+   {{--ckeditor plugins--}}
+
+
+
   <!-- Google Font: Source Sans Pro -->
   <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700" rel="stylesheet">
 </head>

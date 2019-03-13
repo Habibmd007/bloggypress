@@ -5,12 +5,10 @@
         <div class="card-header">
           <h3 class="card-title">Add Post</h3>
         </div>
-        <!-- /.card-header -->
         <div class="card-body">
           <form action="{{route('insert-post')}}" method="POST" role="form">
             @csrf
 
-            <!-- text input -->
             <div class="form-group">
               <label>Head</label>
               <input name="head"  type="text" class="form-control" >

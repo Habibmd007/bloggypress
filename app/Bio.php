@@ -46,6 +46,8 @@ class Bio extends Model
 
     }
 
+   
+
     protected function cropImageUpload($request)
         {   
             $image= $request->file('product_image');

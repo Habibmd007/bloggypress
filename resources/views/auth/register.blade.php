@@ -10,7 +10,7 @@
                 <div class="card-body">
                     <form method="POST" action="{{ route('register') }}">
                         @csrf
-
+                            {{--  name  --}}
                         <div class="form-group row">
                             <label for="name" class="col-md-4 col-form-label text-md-right">{{ __('Name') }}</label>
 
@@ -24,6 +24,89 @@
                                 @endif
                             </div>
                         </div>
+
+                        {{--  //name  --}}
+                            
+                        {{--  country  --}}
+                        <div class="form-group row">
+                            <label for="country" class="col-md-4 col-form-label text-md-right">{{ __('Country') }}</label>
+
+                            <div class="col-md-6">
+                                <input id="country" type="text" class="form-control{{ $errors->has('country') ? ' is-invalid' : '' }}" name="country" value="{{ old('country') }}" required autofocus>
+
+                                @if ($errors->has('country'))
+                                    <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $errors->first('country') }}</strong>
+                                    </span>
+                                @endif
+                            </div>
+                        </div>
+
+                        {{--  //country  --}}
+
+
+                        {{--  state  --}}
+                        <div class="form-group row">
+                            <label for="state" class="col-md-4 col-form-label text-md-right">{{ __('State') }}</label>
+
+                            <div class="col-md-6">
+                                <input id="state" type="text" class="form-control{{ $errors->has('state') ? ' is-invalid' : '' }}" name="state" value="{{ old('state') }}" required autofocus>
+
+                                @if ($errors->has('state'))
+                                    <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $errors->first('state') }}</strong>
+                                    </span>
+                                @endif
+                            </div>
+                        </div>
+
+                        {{--  //state  --}}
+
+                        {{--  gender  --}}
+                        <div class="form-group row">
+                            <label for="gender" class="col-md-4 col-form-label text-md-right">{{ __('Gender') }}</label>
+
+                            <div class="col-md-6">
+
+                            <select id="gender"  name="gender">
+                                    <option value="1">Male</option>
+                                    <option value="0">Female</option>
+                                </select>
+
+                                @if ($errors->has('gender'))
+                                    <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $errors->first('gender') }}</strong>
+                                    </span>
+                                @endif
+
+                                
+                            </div>
+                        </div>
+
+                        {{--  //gender  --}}
+
+                        {{--  date_of_birth  --}}
+                        <div class="form-group row">
+                            <label for="date_of_birth" class="col-md-4 col-form-label text-md-right">{{ __('Date of birth') }}</label>
+
+                            <div class="col-md-6">
+                                <input id="date_of_birth" type="date" class="form-control{{ $errors->has('date_of_birth') ? ' is-invalid' : '' }}" name="date_of_birth" value="{{ old('date_of_birth') }}" required autofocus>
+
+                                @if ($errors->has('date_of_birth'))
+                                    <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $errors->first('date_of_birth') }}</strong>
+                                    </span>
+                                @endif
+
+                                
+                            </div>
+                        </div>
+
+                        {{--  //date_of_birth  --}}
+
+                       
+
+                        
 
                         <div class="form-group row">
                             <label for="email" class="col-md-4 col-form-label text-md-right">{{ __('E-Mail Address') }}</label>

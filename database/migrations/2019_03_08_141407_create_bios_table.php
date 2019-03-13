@@ -15,6 +15,7 @@ class CreateBiosTable extends Migration
     {
         Schema::create('bios', function (Blueprint $table) {
             $table->bigIncrements('id');
+            $table->integer('user_id')->default(1);
             $table->string('name');
             $table->string('desig');
             $table->text('text');

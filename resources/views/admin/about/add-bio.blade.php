@@ -14,6 +14,7 @@
             <div class="form-group">
               <label>Name</label>
               <input name="name"  type="text" class="form-control" >
+              <input name="user_id" value="{{Auth::user()->id}}" type="hidden" class="form-control" >
             </div>
 
             <div class="form-group">
@@ -39,7 +40,7 @@
             <div class="form-group" >
                 <label class="col-md-3 " style="margin-top: 20px"> Publication Status</label>
                 <div class="col-md-9 " style="margin-top: 20px">
-                    <input type="radio" name="status" value="1" checked>Published
+                    <input type="radio" name="status" value="1" checked >Published
                     <input type="radio" name="status" value="0">Unpublished
                 </div>
             </div>
