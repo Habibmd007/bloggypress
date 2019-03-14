@@ -7,12 +7,17 @@ use App\Http\Controllers\Controller;
 use App\Bio;
 use App\Post;
 use App\Info;
+use App\BlogCategory;
+use App\BlogPost;
 
 class FrontController extends Controller
 {
     public function index()
     {
-        return view('frontend.home.blog');
+        $cats= BlogCategory::orderBy('id', 'DESC')->take(4)->get();
+        $featured= BlogPost::where('featured', 1)->first();
+        $feat_cat= BlogCategory::where('id',$featured->cat_id)->first();
+        return view('frontend.home.blog', compact('cats', 'featured', 'feat_cat'));
     }
 
     public function about()

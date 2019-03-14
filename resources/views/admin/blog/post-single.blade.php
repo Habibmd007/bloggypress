@@ -6,6 +6,11 @@
             
                 <!-- Post Item Start -->
                 <div class="post--item post--single text-center">
+                            <h3>Media</h3>
+                        {!!$single_post->media!!}
+
+
+
                     <!-- Post Slider Start -->
                     <h2>Slider Photos</h2>
                     <a name="" id="" class="btn btn-primary mb-3" href="{{route('add-slider',['post_id' => $single_post->id])}}" role="button"> <i class="fa fa-plus" aria-hidden="true"></i> Add Slider </a>

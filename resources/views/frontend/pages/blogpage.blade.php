@@ -22,7 +22,7 @@
                     <!-- Post Slider Start -->
                     <div class="post--slider owl-carousel" data-owl-nav="true" data-owl-dots="true" data-owl-margin="10">
                         @foreach ($sliders as $slider)
-                        <img src="{{$slider->sli_img}}" alt="">
+                        <img src="{{asset($slider->sli_img)}}" alt="">
                         @endforeach
                     </div>
                     <!-- Post Slider End -->
@@ -40,10 +40,17 @@
                             <span>112</span>
                         </p>
 
+                        {{-- comment and reply count --}}
+                       
+                            @php
+                                $replies= DB::table('replies')->where('blogpost_id', $blogpost->id )->get();
+                                $ttlrep= count($replies)
+                            @endphp
+                         
                         <p class="float--right">
                             <a href="#comments" class="btn-link">
                                 <i class="fa fa-comments-o text-primary"></i>
-                                <span>{{$blogpost->comments->count()}}</span>
+                                <span>{{$blogpost->comments->count() + $ttlrep}}</span>
                             </a>
                         </p>
                     </div>
@@ -194,13 +201,13 @@
                             <div class="post--item">
                                 <!-- Post Image Start -->
                                 <div class="post--img">
-                                    <a href="#"><img src="{{asset($bp_youlike->slider->sli_img)}}" alt=""></a>
+                                    <a href="{{route('blog-post',['id'=> $bp_youlike->id])}}"><img src="{{asset($bp_youlike->slider->sli_img)}}" alt=""></a>
                                 </div>
                                 <!-- Post Image End -->
 
                                 <!-- Post Title Start -->
                                 <div class="post--title text-center">
-                                    <h3 class="h5"><a href="#" class="btn-link">{{$bp_youlike->head}}</a></h3>
+                                    <h3 class="h5"><a href="{{route('blog-post',['id'=> $bp_youlike->id])}}" class="btn-link">{{$bp_youlike->head}}</a></h3>
                                 </div>
                                 <!-- Post Title End -->
                             </div>
@@ -216,150 +223,7 @@
                 <!-- Related Posts End -->
 
                 <!-- Post Comments Start -->
-                <div id="comments" class="post--comments pt--40">
-                    <div class="post--comments-title text-uppercase text-center">
-                        <h2 class="h5">03 Comments</h2>
-                    </div>
-
-                    <!-- Comment Items Start -->
-                    <ul class="comment--items">
-
-
-                        @foreach ($blogpost->comments as $comment)
-                            
-                        <li>
-                            <!-- Comment Item Start -->
-                            <div class="comment--item clearfix">
-                                <div class="comment--img float--left">
-                                    <img src="{{asset($comment->user->image)}}" alt="" class="img-circle">
-                                </div>
-
-                                <div class="comment--info ov--h">
-                                <form action="{{route('reply')}}" method="post">
-                                    @csrf
-                                    <div class="comment--header clearfix">
-                                        <button type="submit" class="reply btn-link float--right">Reply</button>
-
-                                        <h3 class="name h5">{{$comment->user->name}}</h3>
-
-                                        <p class="date">{{$comment->created_at}}</p>
-                                    </div>
-
-                                    <div class="comment--content">
-                                        <p>{{$comment->comment}}</p>
-                                    </div>
-                                    <div class="comment--content form-group">
-                                        <input type="hidden" name="comment_id" value="{{$comment->id}}">
-                                        <input type="hidden" name="user_id" value="{{Auth::user()->id}}">
-                                        <textarea name="reply" placeholder="Your Reply" class="form-control" required></textarea>
-                                    </div>
-                                    </form>
-                                </div>
-                            </div>
-                            <!-- Comment Item End -->
-
-
-
-
-                            <!-- Reply Items Start -->
-                            <ul class="comment--items">
-                                @foreach ($comment->reply as $reply)
-                                <li>
-                                    <!-- Comment Item Start -->
-                                    <div class="comment--item clearfix">
-                                        <div class="comment--img float--left">
-                                            <img src="{{$reply->user->image}}" alt="" class="img-circle">
-                                        </div>
-
-                                        <div class="comment--info ov--h">
-                                            <div class="comment--header clearfix">
-                                                <a href="#" class="reply btn-link float--right">Reply</a>
-
-                                                <h3 class="name h5">{{$reply->user->name}}</h3>
-
-                                                <p class="date">{{$reply->created_at}}</p>
-                                            </div>
-                                                
-                                            <div class="comment--content">
-                                                <p>{{$reply->reply}}</p>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <!-- Comment Item End -->
-                                </li>
-                                @endforeach
-                            </ul>
-                            <!-- Comment Items End -->
-                        </li>
-                        @endforeach
-
-                        
-                        
-                        
-                        
-                        
-                        
-                        
-                        {{--  <li>
-                            <!-- Comment Item Start -->
-                            <div class="comment--item clearfix">
-                                <div class="comment--img float--left">
-                                    <img src="img/blog-img/comment-avatar-03.jpg" alt="" class="img-circle">
-                                </div>
-
-                                <div class="comment--info ov--h">
-                                    <div class="comment--header clearfix">
-                                        <a href="#" class="reply btn-link float--right">Reply</a>
-
-                                        <h3 class="name h5">Roy Morris</h3>
-
-                                        <p class="date">June 17, 2017 at 9:00 am</p>
-                                    </div>
-
-                                    <div class="comment--content">
-                                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Veritatis nemo minus non sunt corporis modi vitae perferendis beatae.</p>
-                                    </div>
-                                </div>
-                            </div>
-                            <!-- Comment Item End -->
-                        </li>  --}}
-                    </ul>
-                    <!-- Comment Items End -->
-                </div>
-                <!-- Post Comments End -->
-
-                <!-- Post Comment Form Start -->
-                <div class="post--comment-form pt--40">
-                    <!-- Comment Respond Start -->
-                    <div class="comment--respond">
-                        <div class="comment--respond-title text-uppercase text-center">
-                            <h2 class="h5">Leave Comments</h2>
-                        </div>
-                       @if (Auth::check() && Auth::user()->role->id == 2)
-                           
-                       <form action="{{route('insert-comment')}}" method="POST" data-form="validate">
-                           @csrf
-                           <div class="form-group">
-                               <textarea name="comment" placeholder="Your Comment" class="form-control" required></textarea>
-                           </div>
-                           <div class="form-group">
-                                <input type="hidden" name="blog_post_id" id="" value="{{$blogpost->id}}">
-                                <input type="hidden" name="user_id" id="" value="{{Auth::user()->id}}">
-                            </div>
-
-                        
-                         
-
-
-                           <button type="submit" class="btn btn-default">Post Comment</button>
-                        </form>
-                        @else
-                        <a href="{{route('login')}}" class="btn btn-default">Log-in to Comment</a>
-                           
-                       @endif
-                    </div>
-                    <!-- Comment Respond End -->
-                </div>
+               @include('frontend.comment.comment')
                 <!-- Post Comment Form End -->
             </div>
 
@@ -370,4 +234,29 @@
     </div>
 </section>
 <!-- Blog Section End -->
+
+
+{{-- comment edit modal --}}
+<!-- Button trigger modal -->
+
+<!-- Modal -->
+<div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLongTitle">Modal title</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        ...
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-primary">Save changes</button>
+      </div>
+    </div>
+  </div>
+</div>
 @endsection

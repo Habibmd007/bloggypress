@@ -129,6 +129,15 @@
           </li>
           
           <li class="nav-item has-treeview">
+            <a href="{{route('tags')}}" class="nav-link">
+              <i class="nav-icon fa fa-image"></i>
+              <p>
+                Tags
+              </p>
+            </a>
+          </li>
+          
+          <li class="nav-item has-treeview">
             <a href="{{route('photos')}}" class="nav-link">
               <i class="nav-icon fa fa-image"></i>
               <p>

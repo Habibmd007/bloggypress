@@ -6,7 +6,7 @@
     <div class="card">
         <div class="card-body">
             <div class="row">
-                <img src="{{asset($slider->img)}}" alt="slider" height="150">
+                <img src="{{asset($slider->sli_img)}}" alt="slider" height="150">
             </div>
             
             <div class="row">

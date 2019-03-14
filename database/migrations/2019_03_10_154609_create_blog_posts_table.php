@@ -16,8 +16,11 @@ class CreateBlogPostsTable extends Migration
         Schema::create('blog_posts', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->integer('user_id');
-            $table->string('category');
+            $table->string('cat_id');
+            $table->tinyInteger('tag_id')->nullable();
             $table->string('head');
+            $table->text('media')->nullable();
+            $table->tinyInteger('featured')->default(0)->nullable();
             $table->text('post_short')->nullable();
             $table->text('photo_gallery_text')->nullable();
             $table->text('qoute')->nullable();

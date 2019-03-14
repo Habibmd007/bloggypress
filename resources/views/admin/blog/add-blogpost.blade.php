@@ -21,12 +21,12 @@
             
             <div class="form-group">
               <label>Category</label>
-                <select name="category" id="my-input" class="form-control">
+              <select name="cat_id" id="my-input" class="form-control">
                   <option>Select</option>
                   @foreach ($cat as $cats)
-                  <option value="{{$cats->cat}}">{{$cats->cat}}</option>
+                  <option value="{{$cats->id}}">{{$cats->cat}}</option>
                         
-                    @endforeach
+                  @endforeach
                 </select>
             </div>
             
@@ -36,8 +36,8 @@
               <textarea name="post_short" id="" class="form-control ckeditor " rows="3" ></textarea>
             </div>
             <div class="form-group">
-              <label>Post gallery text</label>
-              <textarea name="photo_gallery_text" id="" class="form-control ckeditor " rows="3" ></textarea>
+              <label>Photo gallery text</label>
+              <textarea name="photo_gallery_text" id="" class="form-control ckeditor " rows="3" placeholder="Optional" ></textarea>
             </div>
            
             <!-- Qoute textarea -->
@@ -50,6 +50,18 @@
             <div class="form-group">
               <label>Post Details </label>
               <textarea name="post_details" id="" class="form-control ckeditor" rows="3" ></textarea>
+            </div>
+            
+            
+            <div class="form-group">
+              <label>Media </label>
+              <input name="media"  type="text" class="form-control" placeholder="Optional">
+            </div>
+            <div class="form-group">
+              <label>Tags </label>
+              <select name="tag" >
+                <option value="">Select Tag Optional</option>
+              </select>
             </div>
                 
             <div class="form-group" >

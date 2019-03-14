@@ -22,7 +22,13 @@
             
             <div class="form-group">
               <label>Category</label>
-              <input name="category"  type="text" class="form-control" value="{{$blogpost->category}}"required>
+              <select name="cat_id" id="my-input" class="form-control">
+                  <option>Select</option>
+                  @foreach ($cat as $cats)
+                  <option value="{{$cats->id}}">{{$cats->cat}}</option>
+                        
+                  @endforeach
+                </select>
             </div>
             
             <!-- Short textarea -->
@@ -46,6 +52,23 @@
               <label>Post Details </label>
               <textarea name="post_details" id="" class="form-control ckeditor" rows="3" >{{$blogpost->post_details}}</textarea>
             </div>
+
+            <div class="form-group">
+                <label>Media </label>
+                <input name="media"  type="text" class="form-control" value="{{$blogpost->media}}" required>
+              </div>
+
+
+              {{-- <div class="form-group">
+                <label>Tags </label>
+                <select name="cat_id" id="my-input" class="form-control">
+                    <option>Select</option>
+                    @foreach ($cat as $cats)
+                    <option value="{{$cats->id}}">{{$cats->cat}}</option>
+                          
+                    @endforeach
+                  </select>
+              </div> --}}
                 
             <div class="form-group" >
                 <label class="col-md-3 " style="margin-top: 20px"> Publication Status</label>

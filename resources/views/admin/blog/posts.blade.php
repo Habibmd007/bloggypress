@@ -22,6 +22,11 @@
                             <div class="post--item">
                                 <!-- Post Image Start -->
                                 <div class="post--img">
+                                    <a href="{{route('blog-singlepost',['id' => $post->id])}}">
+                                        {!!$post->media!!}
+                                    </a>
+                                </div>
+                                <div class="post--img">
                                     @foreach ($sliders as $slider)
                                     <a href="{{route('blog-singlepost',['id' => $post->id])}}"><img src="{{asset($slider->sli_img)}}" alt="" height="100"></a>
                                     @endforeach
@@ -33,6 +38,9 @@
                                     <h5 class="h5"><a href="{{route('blog-singlepost',['id' => $post->id])}}" class="btn-link">{{$post->head}}</a></h5>
                                 </div>
                                 <!-- Post Title End -->
+
+                                 <a href="{{route('edit-featured',['id' => $post->id ])}}" class="btn btn-info" role="button">{{ $post->featured==1 ?"Featured" : "Feature it"}}</a>
+
                             </div>
                             <!-- Post Item End -->
                     </div>

@@ -16,6 +16,8 @@ class CreateBlogCategoriesTable extends Migration
         Schema::create('blog_categories', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->string('cat');
+            $table->string('img')->default('images/cat.jpg');
+            $table->string('disc')->nullable();
             $table->timestamps();
         });
     }

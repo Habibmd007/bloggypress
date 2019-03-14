@@ -137,7 +137,8 @@ class BlogController extends Controller
     public function blogEditePost($id)
     {
         $blogpost = BlogPost::find($id);
-        return view('admin.blog.edit-blogpost', compact('blogpost'));
+        $cat= BlogCategory::all();
+        return view('admin.blog.edit-blogpost', compact('blogpost', 'cat'));
     }
     
     //need to define DB relation
@@ -163,8 +164,11 @@ class BlogController extends Controller
     {
         $bPost= new BlogPost();
         $bPost->user_id = $request->user_id;
-        $bPost->category = $request->category;
+        $bPost->cat_id = $request->cat_id;
+        $bPost->tag_id = $request->tag_id;
         $bPost->head = $request->head;
+        $bPost->media = $request->media;
+        $bPost->featured = $request->featured;
         $bPost->post_short = $request->post_short;
         $bPost->photo_gallery_text = $request->photo_gallery_text;
         $bPost->qoute = $request->post_qoute;
@@ -179,8 +183,11 @@ class BlogController extends Controller
 
         $bPost=  BlogPost::find($request->id);
         $bPost->user_id = $request->user_id;
-        $bPost->category = $request->category;
+        $bPost->cat_id = $request->cat_id;
+        $bPost->tag_id = $request->tag_id;
         $bPost->head = $request->head;
+        $bPost->media = $request->media;
+        $bPost->featured = $request->featured;
         $bPost->post_short = $request->post_short;
         $bPost->photo_gallery_text = $request->photo_gallery_text;
         $bPost->qoute = $request->post_qoute;
@@ -189,6 +196,16 @@ class BlogController extends Controller
         $bPost->save();
         return redirect('blog-posts')->with('msg', 'Updated ok');
         
+    }
+
+    public function featured($id)
+    {
+        $bpost = BlogPost::find($id);
+        $bpost->featured = 
+        $bpost->featured = $bpost->featured==1 ? 0:1;
+        $bpost->save();
+        return redirect('blog-posts')->with('msg', 'Post featured succsessfully');
+
     }
     
     
@@ -222,7 +239,7 @@ class BlogController extends Controller
     // =====================slider function start===============
     public function slider($id)
     {
-        $sliders= Slider::where('post_id', $id)->orderBy('id', 'desc')->get();
+        $sliders= Slider::where('blogpost_id', $id)->orderBy('id', 'desc')->get();
         return view('admin.blog.slider',compact('sliders'));
     }
     

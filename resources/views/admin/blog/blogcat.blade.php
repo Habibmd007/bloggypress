@@ -5,9 +5,9 @@
 @foreach ($cats as $cat)
     <div class="card">
         <div class="card-body">
-                       <h3>{{$cat->cat}} 
-                        <a name="" id="" class="btn btn-primary " href="{{route('delete-blog-cate',['id' => $cat->id ])}}" role="button"> <i class="fa fa-trash" aria-hidden="true"></i>Delete  </a>
-                    </h3>
+          <h3>{{$cat->cat}}</h3>
+          <img src="{{asset($cat->img)}}" alt="" height="200"> <br>
+            <a name="" id="" class="btn btn-primary " href="{{route('delete-blog-cate',['id' => $cat->id ])}}" role="button"> <i class="fa fa-trash" aria-hidden="true"></i>Delete  </a>
         </div>
     </div>
     @endforeach
@@ -19,13 +19,21 @@
         </div>
         <!-- /.card-header -->
         <div class="card-body">
-          <form action="{{route('insert-blog-cate')}}" method="POST" role="form">
+          <form action="{{route('insert-blog-cate')}}" method="POST" role="form" enctype="multipart/form-data">
             @csrf
 
             <!-- text input -->
             <div class="form-group">
               <label>Category</label>
               <input name="cat"  type="text" class="form-control" placeholder="Category">
+            </div>
+            <div class="form-group">
+              <label>Category</label>
+              <input name="img"  type="file" class="form-control">
+            </div>
+            <div class="form-group">
+              <label>Discription</label>
+              <input name="disc"  type="text" class="form-control">
             </div>
             
 

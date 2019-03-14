@@ -17,13 +17,22 @@ Route::group(['namespace' => 'front'], function () {
     Route::get('/', 'FrontController@index')->name('/');
     Route::get('/about', 'FrontController@about')->name('about');
     Route::get('/blogpages', 'BlogFrontController@blogpages')->name('blogpages');
+    Route::get('/blog-post/{id}', 'BlogFrontController@blogPost')->name('blog-post');
     Route::get('/author', 'FrontController@author')->name('author');
     Route::get('/category', 'FrontController@category')->name('category');
     Route::get('/contact', 'FrontController@contact')->name('contact');
 });
 Route::group([ 'middleware'=>['auth', 'verified']], function () {
+
     Route::post('/insert-comment', 'CommentController@insert')->name('insert-comment');
+    Route::post('/edit-comment', 'CommentController@editComment')->name('edit-comment');
+    Route::get('/delete-comment/{id}', 'CommentController@deleteComment')->name('delete-comment');
+    
+    
+    
     Route::post('/reply', 'CommentController@reply')->name('reply');
+    Route::post('/edit-reply', 'CommentController@editReply')->name('edit-reply');
+    Route::get('/delete-reply/{id}', 'CommentController@deletereply')->name('delete-reply');
 });
 
 // Route::group(['namespace'=>'Admin', ], function() {
@@ -66,11 +75,12 @@ Route::group(['namespace'=> 'back', 'middleware'=>['auth', 'verified', 'admin']]
     // =======slider route end===================
 
 
-    // =======Blog Post route start===================
+    // =======Back end Blog Post route start===================
     Route::get('blog-posts', 'BlogController@blogPosts')->name('blog-posts');
     Route::get('add-blogpost', 'BlogController@addPost')->name('add-blogpost');
     Route::get('blog-singlepost/{id}', 'BlogController@blogSinglepost')->name('blog-singlepost');
     Route::get('blog-editepost/{id}', 'BlogController@blogEditePost')->name('blog-editepost');
+    Route::get('edit-featured/{id}', 'BlogController@featured')->name('edit-featured');
     Route::get('blog-deletepost/{id}', 'BlogController@blogDeletePost')->name('blog-deletepost');
     Route::post('insert-blogpost', 'BlogController@insertBlogpost')->name('insert-blogpost');
     Route::post('update-blogpost', 'BlogController@updateBlogpost')->name('update-blogpost');
@@ -105,6 +115,13 @@ Route::group(['namespace'=> 'back', 'middleware'=>['auth', 'verified', 'admin']]
     Route::get('/edit-Category/{id}', 'BlogController@editCategory')->name('edit-Category');
     Route::get('/delete-Category/{id}', 'BlogController@deleteCategory')->name('delete-Category');
     Route::post('/insert-Category', 'BlogController@insertCategory')->name('insert-Category');
+    
+    // =======Tag route start===================
+    Route::get('/tages', 'TagController@tags')->name('tags');
+    Route::get('/add-tag', 'TagController@addtag')->name('add-tag');
+    Route::get('/edit-tag/{id}', 'TagController@edittag')->name('edit-tag');
+    Route::get('/delete-tag/{id}', 'TagController@deletetag')->name('delete-tag');
+    Route::post('/insert-tag', 'TagController@inserttag')->name('insert-tag');
     
     
     

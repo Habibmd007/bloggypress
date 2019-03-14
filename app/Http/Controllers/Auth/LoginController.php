@@ -43,7 +43,7 @@ class LoginController extends Controller
             
         }
         else {
-            $this->redirectTo = route('blogpages');
+            $this->redirectTo = route('admin');
         }
         $this->middleware('guest')->except('logout');
     }
