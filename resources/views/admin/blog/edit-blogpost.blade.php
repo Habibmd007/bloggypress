@@ -23,7 +23,6 @@
             <div class="form-group">
               <label>Category</label>
               <select name="cat_id" id="my-input" class="form-control">
-                  <option>Select</option>
                   @foreach ($cat as $cats)
                   <option value="{{$cats->id}}">{{$cats->cat}}</option>
                         

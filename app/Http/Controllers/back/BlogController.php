@@ -123,7 +123,7 @@ class BlogController extends Controller
     // =====================Blog Post function start===============
     public function blogPosts()
     {
-        $posts= BlogPost::where('status', 1)->orderBy('id', 'desc')->get();
+        $posts= BlogPost::orderBy('id', 'desc')->get();
         // return var_dump( $posts);
         return view('admin.blog.posts',compact('sliders', 'posts'));
     }

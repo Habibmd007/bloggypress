@@ -10,7 +10,7 @@
                     <!-- Banner Content Start -->
                     <div class="banner--content p--60-30 text-white text-center">
                         <div class="tag" data-overlay="0.5" data-overlay-color="primary">
-                            <p><a href="category.html" class="btn-link">{{$feat_cat->cat}}</a></p>
+                            <p><a href="category.html" class="btn-link">{{$featured->category->cat}}</a></p>
                         </div>
 
                         <div class="title">
@@ -19,11 +19,11 @@
 
                         <div class="desc">
                             
-                            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Delectus fuga culpa omnis optio dolores quae consectetur molestiae laudantium dolor adipisci saepe dicta facilis.</p>
+                            <p>{{substr($featured->post_short,3,150)}}</p>
                         </div>
 
                         <div class="action">
-                            <a href="blog-details.html" class="btn btn-white">Read More</a>
+                            <a href="{{route('blog-post',['id'=> $featured->id])}}" class="btn btn-white">Read More</a>
                         </div>
                     </div>
                     <!-- Banner Content End -->

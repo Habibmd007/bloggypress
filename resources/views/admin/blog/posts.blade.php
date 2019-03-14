@@ -21,11 +21,10 @@
                             <!-- Post Item Start -->
                             <div class="post--item">
                                 <!-- Post Image Start -->
-                                <div class="post--img">
-                                    <a href="{{route('blog-singlepost',['id' => $post->id])}}">
-                                        {!!$post->media!!}
-                                    </a>
-                                </div>
+                                        <div class="post--video">
+
+                                            {!!$post->media!!}
+                                        </div>
                                 <div class="post--img">
                                     @foreach ($sliders as $slider)
                                     <a href="{{route('blog-singlepost',['id' => $post->id])}}"><img src="{{asset($slider->sli_img)}}" alt="" height="100"></a>

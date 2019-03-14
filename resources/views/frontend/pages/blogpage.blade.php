@@ -201,7 +201,15 @@
                             <div class="post--item">
                                 <!-- Post Image Start -->
                                 <div class="post--img">
-                                    <a href="{{route('blog-post',['id'=> $bp_youlike->id])}}"><img src="{{asset($bp_youlike->slider->sli_img)}}" alt=""></a>
+                                    <a href="{{route('blog-post',['id'=> $bp_youlike->id])}}">
+                                        @if (isset( $bp_youlike->slider->sli_img))
+                                        <img src="{{asset($bp_youlike->slider->sli_img)}}" alt="">
+                                        @else
+                                        <div class="post--video">
+                                            {!!$bp_youlike->media!!}
+                                        </div>
+                                        @endif
+                                    </a>
                                 </div>
                                 <!-- Post Image End -->
 
