@@ -4,18 +4,17 @@
 <section class="section">
     <div class="container">
         <!-- Post Author Start -->
-        @foreach ($bios as $item)
         <div class="post--author clearfix pb--50">
 
             <div class="img float--left">
-                <img src="{{$item->img}}" alt="" class="img-circle">
+                <img src="{{asset($bio->img)}}" alt="" class="img-circle">
             </div>
                 
             <div class="info ov--h">
                 <div class="header clearfix">
-                    <h2 class="name h6">{{$item->name}}</h2>
+                    <h2 class="name h6">{{$bio->name}}</h2>
 
-                    <p class="role float--left">{{$item->desig}}</p>
+                    <p class="role float--left">{{$bio->desig}}</p>
 
                     <div class="social float--right">
                         <ul class="nav">
@@ -28,12 +27,11 @@
                 </div>
 
                 <div class="bio">
-                    <p>{{$item->text}}</p>
+                    <p>{{$bio->text}}</p>
                 </div>
             </div>
             
         </div>
-        @endforeach
 
 
         <!-- Post Author End -->

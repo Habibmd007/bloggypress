@@ -76,7 +76,7 @@
 
                     <!-- Header Search Bar Start -->
                     <div class="header--search-bar">
-                        <form action="#" data-form="validate">
+                        <form action="{{route('search')}}" data-form="validate" method="POST">
                             <input type="search" name="search" placeholder="Search..." class="form-control" required>
 
                             <button type="submit" class="btn-link"><i class="fa fa-search"></i></button>
@@ -124,14 +124,7 @@
                         <!-- Header nav Links Start -->
                         <ul class="header--nav-links nav">
                             <li class="active"><a href="{{route('/')}}">Home</a></li>
-                            <li><a href="{{route('about')}}">About</a></li>
-                            <li class="dropdown">
-                                <a href="#" class="dropdown-toggle" data-toggle="dropdown">Pages<i class="fa fa-caret-down"></i></a>
-                                <ul class="dropdown-menu">
-                                    <li><a href="{{route('blogpages')}}">Blog Details Right</a></li>
-                                    <li><a href="{{route('author')}}">Author</a></li>
-                                </ul>
-                            </li>
+                            
                             <li><a href="{{route('contact')}}">Contact</a></li>
                             <li><a href="#">Purchase</a></li>
                         </ul>

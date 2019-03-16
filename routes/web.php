@@ -15,17 +15,23 @@
 
 Route::group(['namespace' => 'front'], function () {
     Route::get('/', 'FrontController@index')->name('/');
-    Route::get('/about', 'FrontController@about')->name('about');
-    Route::get('/author', 'FrontController@author')->name('author');
+    Route::get('/about-author/{id}', 'FrontController@aboutAuthor')->name('about-author');
+
+    Route::get('/author/{id}', 'FrontController@author')->name('author');
+
     Route::get('/category', 'FrontController@category')->name('category');
     Route::get('/contact', 'FrontController@contact')->name('contact');
     
     Route::get('/blogpost-new', 'BlogFrontController@blogpostNew')->name('blogpost-new');
     Route::get('/blogpost-old', 'BlogFrontController@blogpostOld')->name('blogpost-old');
     
-    Route::get('/blogpages', 'BlogFrontController@blogpages')->name('blogpages');
     Route::get('/blog-post/{id}', 'BlogFrontController@blogPost')->name('blog-post');
     Route::get('/post-bycat/{id}', 'FrontController@postBycat')->name('post-bycat');
+
+    // ==========search===========
+    Route::get('/search', 'SearchController@index');
+
+
 });
 Route::group([ 'middleware'=>['auth', 'verified']], function () {
 
@@ -48,7 +54,6 @@ Route::group([ 'middleware'=>['auth', 'verified']], function () {
 
 
 Route::group(['namespace'=> 'back', 'middleware'=>['auth', 'verified', 'admin']], function () {
-    
     Route::get('about-bio', 'AboutController@index')->name('bio');
     Route::get('add-bio', 'AboutController@addBio')->name('add-bio');
     Route::get('edit-bio/{id}', 'AboutController@editBio')->name('edit-bio');

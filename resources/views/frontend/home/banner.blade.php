@@ -73,7 +73,7 @@
                             <p class="float--left">
                                 <i class="fa fa-clock-o text-primary"></i>
                                 <span>{{$featured->created_at}}</span>
-                                <a href="{{route('about',['id'=> $featured->user->bio->id])}}">{{$featured->user->name}}</a>
+                                <a href="{{route('bio',['id'=> $featured->user->id])}}">{{$featured->user->name}}</a>
                             </p>
 
                             <p class="float--right">

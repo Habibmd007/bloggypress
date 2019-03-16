@@ -30,11 +30,10 @@ class FrontController extends Controller
         return view('frontend.pages.category', compact('cat_posts'));
     }
 
-    public function about()
+    public function aboutAuthor($id)
     {
-        $bios= Bio::where('status', 1)
-                    ->orderBy('id', 'DESC')
-                    ->get();
+        $bio= Bio::find($id);
+                    
 
         $posts= Post::where('status', 1)
                     ->orderBy('id', 'DESC')
@@ -44,13 +43,26 @@ class FrontController extends Controller
                     ->orderBy('id', 'DESC')
                     ->get();
 
-        return view('frontend.about.aboutpage',compact('bios', 'posts', 'infs'));
+        return view('frontend.about.aboutpage',compact('bio', 'posts', 'infs'));
     }
     
-    public function author()
+    public function author($id)
     {
-        return view('frontend.pages.author');
+        $bio= Bio::where('user_id', $id)->first();
+        $author_posts= BlogPost::where('user_id', $id)->paginate(10);
+        return view('frontend.pages.author', compact('bio', 'author_posts'));
     }
+
+    // public function aboutAuthor($id)
+    // {
+    //     $bio=  Bio::find($id);
+    //     return view('admin.about.bio',compact('bio'));
+    // }
+
+
+
+
+
     public function category()
     {
         return view('frontend.pages.category');

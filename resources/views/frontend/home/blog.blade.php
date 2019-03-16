@@ -62,7 +62,7 @@
                                 <p class="float--left">
                                     <i class="fa fa-clock-o text-primary"></i>
                                     <span>{{$home_1st->created_at}}</span>
-                                    <a href="{{route('about',['id'=> $home_1st->user->bio->id])}}">{{$home_1st->user->name}}</a>
+                                    <a href="{{route('author',['id'=> $home_1st->user->id])}}">{{$home_1st->user->name}}</a>
                                 </p>
 
                                 <p class="float--right">
@@ -137,7 +137,7 @@
                                     <p class="float--left">
                                         <i class="fa fa-clock-o text-primary"></i>
                                         <span>{{$home_2nd->created_at}}</span>
-                                        <a href="{{route('about',['id'=> $home_2nd->user->bio->id])}}">{{$home_2nd->user->name}}</a>
+                                        <a href="{{route('author',['id'=> $home_2nd->user->id])}}">{{$home_2nd->user->name}}</a>
                                     </p>
     
                                     <p class="float--right">
@@ -219,7 +219,7 @@
                                     <p class="float--left">
                                         <i class="fa fa-clock-o text-primary"></i>
                                         <span>{{$home_3rds->created_at}}</span>
-                                        <a href="{{route('about',['id'=> $home_3rds->user->bio->id])}}">{{$home_3rds->user->name}}</a>
+                                        <a href="{{route('author',['id'=> $home_3rds->user->id])}}">{{$home_3rds->user->name}}</a>
                                     </p>
     
                                     <p class="float--right">
@@ -299,7 +299,7 @@
                                     <p class="float--left">
                                         <i class="fa fa-clock-o text-primary"></i>
                                         <span>{{$home_4th->created_at}}</span>
-                                        <a href="{{route('about',['id'=> $home_4th->user->bio->id])}}">{{$home_4th->user->name}}</a>
+                                        <a href="{{route('author',['id'=> $home_4th->user->id])}}">{{$home_4th->user->name}}</a>
                                     </p>
     
                                     <p class="float--right">

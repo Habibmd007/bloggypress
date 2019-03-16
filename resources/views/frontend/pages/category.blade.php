@@ -60,7 +60,7 @@
                                                 <p class="float--left">
                                                     <i class="fa fa-clock-o text-primary"></i>
                                                     <span>{{$cat_post->created_at}}</span>
-                                                    <a href="{{route('about',['id'=> $cat_post->user->bio->id])}}">{{$cat_post->user->name}}</a>
+                                                    <a href="{{route('author',['id'=> $cat_post->user->id])}}">{{$cat_post->user->name}}</a>
                                                 </p>
                 
                                                 <p class="float--right">

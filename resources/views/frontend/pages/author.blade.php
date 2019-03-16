@@ -6,17 +6,18 @@
             <div class="container">
                 <div class="row">
                     <div class="col-md-8">
+
                         <!-- Post Author Start -->
                         <div class="post--author clearfix pb--60">
                             <div class="img float--left">
-                                <img src="img/blog-img/post-author.jpg" alt="" class="img-circle">
+                                <img src="{{asset($bio->img)}}" alt="" class="img-circle">
                             </div>
 
                             <div class="info ov--h">
                                 <div class="header clearfix">
-                                    <h2 class="name h6">Karen Rosalie</h2>
+                                    <h2 class="name h6">{{$bio->name}}</h2>
 
-                                    <p class="role float--left">Photographer &amp; Blogger</p>
+                                    <p class="role float--left">{{$bio->desig}}</p>
 
                                     <div class="social float--right">
                                         <ul class="nav">
@@ -29,367 +30,103 @@
                                 </div>
 
                                 <div class="bio">
-                                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Temporibus, suscipit. Mollitia placeat, delectus autem aliquid eius assumenda quibusdam accusamus ad illo soluta labore quam, sunt dolor nisi voluptate provident harum!</p>
+                                    <p>{{substr($bio->text, 0, 150)}}</p>
                                 </div>
 
                                 <div class="action">
-                                    <a href="about.html">Read More</a>
+                                    <a href="{{route('about-author',['id'=> $bio->id])}}">Read More</a>
                                 </div>
                             </div>
                         </div>
                         <!-- Post Author End -->
 
                         <div class="row" data-trigger="masonry">
-                            <div class="col-sm-6 col-xs-12 pb--60">
-                                <!-- Post Item Start -->
-                                <div class="post--item text-center">
-                                    <!-- Post Slider Start -->
-                                    <div class="post--slider owl-carousel" data-owl-nav="true" data-owl-dots="true" data-owl-margin="10">
-                                        <img src="img/posts-img/post-slider-01.jpg" alt="">
-                                        <img src="img/posts-img/post-slider-02.jpg" alt="">
-                                        <img src="img/posts-img/post-slider-03.jpg" alt="">
+
+
+
+                                @foreach ($author_posts as $all_post)
+                        
+
+                                <div class="col-sm-6 col-xs-12 pb--60">
+                                    <!-- Post Item Start -->
+                                    <div class="post--item text-center">
+                                        <!-- Post Image Start -->
+                                        @if (isset($all_post->slider->sli_img))
+                                        <div class="post--img">
+                                            <a href="{{route('blog-post',['id'=> $all_post->id])}}"><img src="{{asset($all_post->slider->sli_img)}}" alt=""></a>
+                                        </div>
+                                        @else
+                                        <div class="post--video">
+                                            {!!$all_post->media!!}
+                                        </div>
+                                        @endif
+            
+                                        <!-- Post Image End -->
+            
+                                        <!-- Post Category Start -->
+                                        <div class="post--cat">
+                                            <a href="{{route('post-bycat',['id'=> $all_post->category->id])}}" data-overlay="0.5" data-overlay-color="primary">{{$all_post->category->cat}}</a>
+                                        </div>
+                                        <!-- Post Category End -->
+            
+                                        <!-- Post Title Start -->
+                                        <div class="post--title">
+                                            <h2 class="h3"><a href="{{route('blog-post',['id'=> $all_post->id])}}" class="btn-link">{{$all_post->head}}</a></h2>
+                                        </div>
+                                        <!-- Post Title End -->
+            
+                                        <!-- Post Excerpt Start -->
+                                        <div class="post--excerpt">
+                                                {{substr($all_post->post_short,3,150)}}
+                                        </div>
+                                        <!-- Post Excerpt End -->
+            
+                                        <!-- Post Action Start -->
+                                        <div class="post--action">
+                                            <a href="{{route('blog-post',['id'=> $all_post->id])}}" class="btn btn-default">Read More</a>
+                                        </div>
+                                        <!-- Post Action End -->
+            
+                                        <!-- Post Meta Start -->
+                                        <div class="post--meta clearfix">
+                                                <p class="float--left">
+                                                    <i class="fa fa-clock-o text-primary"></i>
+                                                    <span>{{$all_post->created_at}}</span>
+                                                    <a href="{{route('about-author',['id'=> $all_post->user->bio->id])}}">{{$all_post->user->name}}</a>
+                                                </p>
+                
+                                                <p class="float--right">
+                                                    <i class="fa fa-heart-o text-primary"></i>
+                                                    <span>{{$all_post->comments->count()}}</span>
+                                                </p>
+                
+                                                <p class="float--right">
+                                                    <a href="{{route('blog-post',['id'=> $all_post->id])}}#comments" class="btn-link">
+                                                        <i class="fa fa-comments-o text-primary"></i>
+                                                        <span>{{$all_post->comments->count()}}</span>
+                                                    </a>
+                                                </p>
+                                            </div>
+                                        <!-- Post Meta End -->
                                     </div>
-                                    <!-- Post Slider End -->
-
-                                    <!-- Post Category Start -->
-                                    <div class="post--cat">
-                                        <a href="#" data-overlay="0.5" data-overlay-color="primary">Travel</a>
-                                    </div>
-                                    <!-- Post Category End -->
-
-                                    <!-- Post Title Start -->
-                                    <div class="post--title">
-                                        <h2 class="h3"><a href="blog-details.html" class="btn-link">Wherever You Go, Go With All Your Heart</a></h2>
-                                    </div>
-                                    <!-- Post Title End -->
-
-                                    <!-- Post Excerpt Start -->
-                                    <div class="post--excerpt">
-                                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Vero voluptate, quibusdam obcaecati, nemo at quas aliquid repellendus odit ducimus dolore quia, voluptates, praesentium repudiandae hic maxime impedit earum! Alias, et!</p>
-                                    </div>
-                                    <!-- Post Excerpt End -->
-
-                                    <!-- Post Action Start -->
-                                    <div class="post--action">
-                                        <a href="blog-details.html" class="btn btn-default">Read More</a>
-                                    </div>
-                                    <!-- Post Action End -->
-
-                                    <!-- Post Meta Start -->
-                                    <div class="post--meta clearfix">
-                                        <p class="float--left">
-                                            <i class="fa fa-clock-o text-primary"></i>
-                                            <span>12 June 2017</span>
-                                            <a href="#">by John Doe</a>
-                                        </p>
-
-                                        <p class="float--right">
-                                            <i class="fa fa-heart-o text-primary"></i>
-                                            <span>112</span>
-                                        </p>
-
-                                        <p class="float--right">
-                                            <a href="blog-details.html#comments" class="btn-link">
-                                                <i class="fa fa-comments-o text-primary"></i>
-                                                <span>52</span>
-                                            </a>
-                                        </p>
-                                    </div>
-                                    <!-- Post Meta End -->
+                                    <!-- Post Item End -->
                                 </div>
-                                <!-- Post Item End -->
-                            </div>
-
-                            <div class="col-sm-6 col-xs-12 pb--60">
-                                <!-- Post Item Start -->
-                                <div class="post--item text-center">
-                                    <!-- Post Image Start -->
-                                    <div class="post--img">
-                                        <a href="blog-details.html"><img src="img/posts-img/post-img-01.jpg" alt=""></a>
-                                    </div>
-                                    <!-- Post Image End -->
-
-                                    <!-- Post Category Start -->
-                                    <div class="post--cat">
-                                        <a href="#" data-overlay="0.5" data-overlay-color="primary">Travel</a>
-                                    </div>
-                                    <!-- Post Category End -->
-
-                                    <!-- Post Title Start -->
-                                    <div class="post--title">
-                                        <h2 class="h3"><a href="blog-details.html" class="btn-link">Wherever You Go, Go With All Your Heart</a></h2>
-                                    </div>
-                                    <!-- Post Title End -->
-
-                                    <!-- Post Excerpt Start -->
-                                    <div class="post--excerpt">
-                                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Vero voluptate, quibusdam obcaecati, nemo at quas aliquid repellendus odit ducimus dolore quia, voluptates, praesentium repudiandae hic maxime impedit earum! Alias, et!</p>
-                                    </div>
-                                    <!-- Post Excerpt End -->
-
-                                    <!-- Post Action Start -->
-                                    <div class="post--action">
-                                        <a href="blog-details.html" class="btn btn-default">Read More</a>
-                                    </div>
-                                    <!-- Post Action End -->
-
-                                    <!-- Post Meta Start -->
-                                    <div class="post--meta clearfix">
-                                        <p class="float--left">
-                                            <i class="fa fa-clock-o text-primary"></i>
-                                            <span>12 June 2017</span>
-                                            <a href="#">by John Doe</a>
-                                        </p>
-
-                                        <p class="float--right">
-                                            <i class="fa fa-heart-o text-primary"></i>
-                                            <span>112</span>
-                                        </p>
-
-                                        <p class="float--right">
-                                            <a href="blog-details.html#comments" class="btn-link">
-                                                <i class="fa fa-comments-o text-primary"></i>
-                                                <span>52</span>
-                                            </a>
-                                        </p>
-                                    </div>
-                                    <!-- Post Meta End -->
-                                </div>
-                                <!-- Post Item End -->
-                            </div>
-
-                            <div class="col-sm-6 col-xs-12 pb--60">
-                                <!-- Post Item Start -->
-                                <div class="post--item text-center">
-                                    <!-- Post Video Start -->
-                                    <div class="post--video">
-                                        <iframe src="https://www.youtube.com/embed/YE7VzlLtp-4?showinfo=0&controls=0&rel=0&wmode=transparent"></iframe>
-                                    </div>
-                                    <!-- Post Video End -->
-
-                                    <!-- Post Category Start -->
-                                    <div class="post--cat">
-                                        <a href="#" data-overlay="0.5" data-overlay-color="primary">Travel</a>
-                                    </div>
-                                    <!-- Post Category End -->
-
-                                    <!-- Post Title Start -->
-                                    <div class="post--title">
-                                        <h2 class="h3"><a href="blog-details.html" class="btn-link">Wherever You Go, Go With All Your Heart</a></h2>
-                                    </div>
-                                    <!-- Post Title End -->
-
-                                    <!-- Post Excerpt Start -->
-                                    <div class="post--excerpt">
-                                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Vero voluptate, quibusdam obcaecati, nemo at quas aliquid repellendus odit ducimus dolore quia, voluptates, praesentium repudiandae hic maxime impedit earum! Alias, et!</p>
-                                    </div>
-                                    <!-- Post Excerpt End -->
-
-                                    <!-- Post Action Start -->
-                                    <div class="post--action">
-                                        <a href="blog-details.html" class="btn btn-default">Read More</a>
-                                    </div>
-                                    <!-- Post Action End -->
-
-                                    <!-- Post Meta Start -->
-                                    <div class="post--meta clearfix">
-                                        <p class="float--left">
-                                            <i class="fa fa-clock-o text-primary"></i>
-                                            <span>12 June 2017</span>
-                                            <a href="#">by John Doe</a>
-                                        </p>
-
-                                        <p class="float--right">
-                                            <i class="fa fa-heart-o text-primary"></i>
-                                            <span>112</span>
-                                        </p>
-
-                                        <p class="float--right">
-                                            <a href="blog-details.html#comments" class="btn-link">
-                                                <i class="fa fa-comments-o text-primary"></i>
-                                                <span>52</span>
-                                            </a>
-                                        </p>
-                                    </div>
-                                    <!-- Post Meta End -->
-                                </div>
-                                <!-- Post Item End -->
-                            </div>
-
-                            <div class="col-sm-6 col-xs-12 pb--60">
-                                <!-- Post Item Start -->
-                                <div class="post--item text-center">
-                                    <!-- Post Video Start -->
-                                    <div class="post--video">
-                                        <iframe src="https://player.vimeo.com/video/154190504?byline=0&portrait=0&title=0"></iframe>
-                                    </div>
-                                    <!-- Post Video End -->
-
-                                    <!-- Post Category Start -->
-                                    <div class="post--cat">
-                                        <a href="#" data-overlay="0.5" data-overlay-color="primary">Travel</a>
-                                    </div>
-                                    <!-- Post Category End -->
-
-                                    <!-- Post Title Start -->
-                                    <div class="post--title">
-                                        <h2 class="h3"><a href="blog-details.html" class="btn-link">Wherever You Go, Go With All Your Heart</a></h2>
-                                    </div>
-                                    <!-- Post Title End -->
-
-                                    <!-- Post Excerpt Start -->
-                                    <div class="post--excerpt">
-                                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Vero voluptate, quibusdam obcaecati, nemo at quas aliquid repellendus odit ducimus dolore quia, voluptates, praesentium repudiandae hic maxime impedit earum! Alias, et!</p>
-                                    </div>
-                                    <!-- Post Excerpt End -->
-
-                                    <!-- Post Action Start -->
-                                    <div class="post--action">
-                                        <a href="blog-details.html" class="btn btn-default">Read More</a>
-                                    </div>
-                                    <!-- Post Action End -->
-
-                                    <!-- Post Meta Start -->
-                                    <div class="post--meta clearfix">
-                                        <p class="float--left">
-                                            <i class="fa fa-clock-o text-primary"></i>
-                                            <span>12 June 2017</span>
-                                            <a href="#">by John Doe</a>
-                                        </p>
-
-                                        <p class="float--right">
-                                            <i class="fa fa-heart-o text-primary"></i>
-                                            <span>112</span>
-                                        </p>
-
-                                        <p class="float--right">
-                                            <a href="blog-details.html#comments" class="btn-link">
-                                                <i class="fa fa-comments-o text-primary"></i>
-                                                <span>52</span>
-                                            </a>
-                                        </p>
-                                    </div>
-                                    <!-- Post Meta End -->
-                                </div>
-                                <!-- Post Item End -->
-                            </div>
-
-                            <div class="col-sm-6 col-xs-12 pb--60">
-                                <!-- Post Item Start -->
-                                <div class="post--item text-center">
-                                    <!-- Post Category Start -->
-                                    <div class="post--cat">
-                                        <a href="#" data-overlay="0.5" data-overlay-color="primary">Travel</a>
-                                    </div>
-                                    <!-- Post Category End -->
-
-                                    <!-- Post Title Start -->
-                                    <div class="post--title">
-                                        <h2 class="h3"><a href="blog-details.html" class="btn-link">Wherever You Go, Go With All Your Heart</a></h2>
-                                    </div>
-                                    <!-- Post Title End -->
-
-                                    <!-- Post Excerpt Start -->
-                                    <div class="post--excerpt">
-                                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Vero voluptate, quibusdam obcaecati, nemo at quas aliquid repellendus odit ducimus dolore quia, voluptates, praesentium repudiandae hic maxime impedit earum! Alias, et!</p>
-                                    </div>
-                                    <!-- Post Excerpt End -->
-
-                                    <!-- Post Action Start -->
-                                    <div class="post--action">
-                                        <a href="blog-details.html" class="btn btn-default">Read More</a>
-                                    </div>
-                                    <!-- Post Action End -->
-
-                                    <!-- Post Meta Start -->
-                                    <div class="post--meta clearfix">
-                                        <p class="float--left">
-                                            <i class="fa fa-clock-o text-primary"></i>
-                                            <span>12 June 2017</span>
-                                            <a href="#">by John Doe</a>
-                                        </p>
-
-                                        <p class="float--right">
-                                            <i class="fa fa-heart-o text-primary"></i>
-                                            <span>112</span>
-                                        </p>
-
-                                        <p class="float--right">
-                                            <a href="blog-details.html#comments" class="btn-link">
-                                                <i class="fa fa-comments-o text-primary"></i>
-                                                <span>52</span>
-                                            </a>
-                                        </p>
-                                    </div>
-                                    <!-- Post Meta End -->
-                                </div>
-                                <!-- Post Item End -->
-                            </div>
-
-                            <div class="col-sm-6 col-xs-12 pb--60">
-                                <!-- Post Item Start -->
-                                <div class="post--item text-center">
-                                    <!-- Post Audio Start -->
-                                    <div class="post--audio">
-                                        <iframe src="https://w.soundcloud.com/player/?url=https://api.soundcloud.com/tracks/34019569&auto_play=false&hide_related=true&show_comments=false&show_reposts=false&visual=true&sharing=false&download=false"></iframe>
-                                    </div>
-                                    <!-- Post Audio End -->
-
-                                    <!-- Post Category Start -->
-                                    <div class="post--cat">
-                                        <a href="#" data-overlay="0.5" data-overlay-color="primary">Travel</a>
-                                    </div>
-                                    <!-- Post Category End -->
-
-                                    <!-- Post Title Start -->
-                                    <div class="post--title">
-                                        <h2 class="h3"><a href="blog-details.html" class="btn-link">Wherever You Go, Go With All Your Heart</a></h2>
-                                    </div>
-                                    <!-- Post Title End -->
-
-                                    <!-- Post Excerpt Start -->
-                                    <div class="post--excerpt">
-                                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Vero voluptate, quibusdam obcaecati, nemo at quas aliquid repellendus odit ducimus dolore quia, voluptates, praesentium repudiandae hic maxime impedit earum! Alias, et!</p>
-                                    </div>
-                                    <!-- Post Excerpt End -->
-
-                                    <!-- Post Action Start -->
-                                    <div class="post--action">
-                                        <a href="blog-details.html" class="btn btn-default">Read More</a>
-                                    </div>
-                                    <!-- Post Action End -->
-
-                                    <!-- Post Meta Start -->
-                                    <div class="post--meta clearfix">
-                                        <p class="float--left">
-                                            <i class="fa fa-clock-o text-primary"></i>
-                                            <span>12 June 2017</span>
-                                            <a href="#">by John Doe</a>
-                                        </p>
-
-                                        <p class="float--right">
-                                            <i class="fa fa-heart-o text-primary"></i>
-                                            <span>112</span>
-                                        </p>
-
-                                        <p class="float--right">
-                                            <a href="blog-details.html#comments" class="btn-link">
-                                                <i class="fa fa-comments-o text-primary"></i>
-                                                <span>52</span>
-                                            </a>
-                                        </p>
-                                    </div>
-                                    <!-- Post Meta End -->
-                                </div>
-                                <!-- Post Item End -->
-                            </div>
+                                @endforeach
+                            
                         </div>
+
+
+
+
+
+
+                      
 
                         <!-- Pager Start -->
                         <div class="pager--wrapper pb--50">
                             <ul class="pager nav ff--primary">
-                                <li><a href="#"><i class="fa fa-long-arrow-left"></i>Older Posts</a></li>
-                                <li><a href="#">Newer Posts<i class="fa fa-long-arrow-right"></i></a></li>
+                                <li><a href="{{$author_posts->previousPageUrl()}}"><i class="fa fa-long-arrow-left"></i>Older Posts</a></li>
+                                <li><a href="{{$author_posts->nextPageUrl()}}">Newer Posts<i class="fa fa-long-arrow-right"></i></a></li>
                             </ul>
                         </div>
                         <!-- Pager End -->

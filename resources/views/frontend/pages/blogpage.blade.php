@@ -33,7 +33,7 @@
                         <p class="float--left">
                             <i class="fa fa-clock-o text-primary"></i>
                             <span>{{$blogpost->created_at}}</span>
-                            <a href="author.html">{{$blogpost->user->name}}</a>
+                            <a href="{{route('author',['id'=> $blogpost->user->id])}}">{{$blogpost->user->name}}</a>
                         </p>
 
                         <p class="float--right">
@@ -96,7 +96,7 @@
                             <li><strong>Categories:</strong></li>
                             @foreach ($cats as $cat)
                                 
-                            <li><a href="#">{{$cat->cat}}</a></li>
+                            <li><a href="{{route('post-bycat',['id'=> $cat->id])}}">{{$cat->cat}}</a></li>
                             @endforeach
 
                         </ul>
@@ -156,17 +156,24 @@
                 </div>
                 <!-- Pager End -->
 
+
+
+
+
+
+               
+                {{-- -------------------- --}}
                 <!-- Post Author Start -->
                 <div class="post--author clearfix pt--50">
                     <div class="img float--left">
-                        <img src="img/blog-img/post-author.jpg" alt="" class="img-circle">
+                        <img src="{{asset($blogpost->user->bio->img)}}" alt="" class="img-circle">
                     </div>
 
                     <div class="info ov--h">
                         <div class="header clearfix">
-                            <h2 class="name h6"><a href="author.html" class="btn-link">Karen Rosalie</a></h2>
+                            <h2 class="name h6">{{$blogpost->user->name}}</h2>
 
-                            <p class="role float--left">Photographer &amp; Blogger</p>
+                            <p class="role float--left">{{$blogpost->user->bio->desig}}</p>
 
                             <div class="social float--right">
                                 <ul class="nav">
@@ -179,15 +186,16 @@
                         </div>
 
                         <div class="bio">
-                            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Temporibus, suscipit. Mollitia placeat, delectus autem aliquid eius assumenda quibusdam accusamus ad illo soluta labore quam, sunt dolor nisi voluptate provident harum!</p>
+                            <p>{{$blogpost->user->bio->text}}</p>
                         </div>
 
                         <div class="action">
-                            <a href="author.html">View all posts by Dylan Reyes</a>
+                            <a href="{{route('bio',['id'=> $blogpost->user->id])}}">View all posts by {{ $blogpost->user->name}}</a>
                         </div>
                     </div>
                 </div>
                 <!-- Post Author End -->
+                {{-- -------------------- --}}
 
                 <!-- Related Posts Start -->
                 <div class="related--posts pt--50">
