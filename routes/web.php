@@ -16,11 +16,16 @@
 Route::group(['namespace' => 'front'], function () {
     Route::get('/', 'FrontController@index')->name('/');
     Route::get('/about', 'FrontController@about')->name('about');
-    Route::get('/blogpages', 'BlogFrontController@blogpages')->name('blogpages');
-    Route::get('/blog-post/{id}', 'BlogFrontController@blogPost')->name('blog-post');
     Route::get('/author', 'FrontController@author')->name('author');
     Route::get('/category', 'FrontController@category')->name('category');
     Route::get('/contact', 'FrontController@contact')->name('contact');
+    
+    Route::get('/blogpost-new', 'BlogFrontController@blogpostNew')->name('blogpost-new');
+    Route::get('/blogpost-old', 'BlogFrontController@blogpostOld')->name('blogpost-old');
+    
+    Route::get('/blogpages', 'BlogFrontController@blogpages')->name('blogpages');
+    Route::get('/blog-post/{id}', 'BlogFrontController@blogPost')->name('blog-post');
+    Route::get('/post-bycat/{id}', 'FrontController@postBycat')->name('post-bycat');
 });
 Route::group([ 'middleware'=>['auth', 'verified']], function () {
 

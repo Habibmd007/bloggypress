@@ -19,6 +19,7 @@
                 @endphp
                     
                 <div class="post--item post--single text-center">
+                        {!!$blogpost->media!!}
                     <!-- Post Slider Start -->
                     <div class="post--slider owl-carousel" data-owl-nav="true" data-owl-dots="true" data-owl-margin="10">
                         @foreach ($sliders as $slider)
@@ -75,10 +76,12 @@
                             @endforeach
                         </div>
                       {!!$blogpost->photo_gallery_text!!}
-                      
+                      @if (isset($blogpost->qoute))
+                          
                       <blockquote>
-                          {!!$blogpost->photo_gallery_text!!}
-                        </blockquote>
+                          {!!$blogpost->qoute!!}
+                      </blockquote>
+                      @endif
                         
                         {!!$blogpost->post_details!!}
                     </div>

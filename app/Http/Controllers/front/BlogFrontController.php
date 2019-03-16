@@ -42,6 +42,17 @@ class BlogFrontController extends Controller
         return view('frontend.pages.blogpage', compact('blogposts', 'bp_youlikes'));
     }
 
+    public function blogpostNew()
+    {
+        $all_posts= BlogPost::orderBy('id', 'DESC')->paginate(10);
+        return view('frontend.pages.all-blogpost', compact('all_posts'));
+    }
+    public function blogpostOld()
+    {
+        $all_posts= BlogPost::paginate(10);
+        return view('frontend.pages.all-blogpost', compact('all_posts'));
+    }
+
    
     
     

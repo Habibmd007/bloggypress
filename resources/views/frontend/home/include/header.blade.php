@@ -130,7 +130,6 @@
                                 <ul class="dropdown-menu">
                                     <li><a href="{{route('blogpages')}}">Blog Details Right</a></li>
                                     <li><a href="{{route('author')}}">Author</a></li>
-                                    <li><a href="{{route('category')}}">Category</a></li>
                                 </ul>
                             </li>
                             <li><a href="{{route('contact')}}">Contact</a></li>

@@ -16,8 +16,18 @@ class FrontController extends Controller
     {
         $cats= BlogCategory::orderBy('id', 'DESC')->take(4)->get();
         $featured= BlogPost::where('featured', 1)->first();
-        $feat_cat= BlogCategory::where('id',$featured->cat_id)->first();
-        return view('frontend.home.blog', compact('cats', 'featured', 'feat_cat'));
+     
+        $home_1st= BlogPost::orderBy('id', 'DESC')->first();
+        $home_2nds= BlogPost::orderBy('id', 'DESC')->skip(1)->take(2)->get();
+        $home_3rds= BlogPost::orderBy('id', 'DESC')->skip(3)->first();
+        $home_4ths= BlogPost::orderBy('id', 'DESC')->skip(4)->take(2)->get();
+        return view('frontend.home.blog', compact('cats', 'featured', 'feat_cat', 'home_1st','home_2nds', 'home_3rds', 'home_4ths'));
+    }
+    
+    public function postBycat($id)
+    {
+        $cat_posts= BlogPost::where('cat_id', $id)->paginate(12);
+        return view('frontend.pages.category', compact('cat_posts'));
     }
 
     public function about()

@@ -27,6 +27,11 @@ class User extends Authenticatable
     {
         return $this->hasMany('App\Comment');
     }
+
+    public function bio()
+    {
+        return $this->hasOne('App\Bio');
+    }
     
 
 

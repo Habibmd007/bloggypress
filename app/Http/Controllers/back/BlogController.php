@@ -204,7 +204,7 @@ class BlogController extends Controller
         $bpost->featured = 
         $bpost->featured = $bpost->featured==1 ? 0:1;
         $bpost->save();
-        return redirect('blog-posts')->with('msg', 'Post featured succsessfully');
+        return redirect('blog-posts')->with('msg', 'Featured post changed succsessfully');
 
     }
     
