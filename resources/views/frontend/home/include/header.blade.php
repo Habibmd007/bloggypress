@@ -77,6 +77,7 @@
                     <!-- Header Search Bar Start -->
                     <div class="header--search-bar">
                         <form action="{{route('search')}}" data-form="validate" method="POST">
+                            @csrf
                             <input type="search" name="search" placeholder="Search..." class="form-control" required>
 
                             <button type="submit" class="btn-link"><i class="fa fa-search"></i></button>

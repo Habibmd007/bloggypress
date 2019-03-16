@@ -29,7 +29,7 @@ Route::group(['namespace' => 'front'], function () {
     Route::get('/post-bycat/{id}', 'FrontController@postBycat')->name('post-bycat');
 
     // ==========search===========
-    Route::get('/search', 'SearchController@index');
+    Route::post('/search', 'SearchController@index')->name('search');
 
 
 });
