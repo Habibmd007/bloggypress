@@ -54,6 +54,18 @@ Route::group([ 'middleware'=>['auth', 'verified']], function () {
 
 
 Route::group(['namespace'=> 'back', 'middleware'=>['auth', 'verified', 'admin']], function () {
+    // =======title route start===================
+     Route::get('/title', 'TitleController@title')->name('title');
+     Route::get('/title', 'TitleController@title')->name('title');
+     Route::get('/add-title', 'TitleController@addtitle')->name('add-title');
+     Route::get('/edit-title/{id}', 'TitleController@edittitle')->name('edit-title');
+     Route::get('/delete-title/{id}', 'TitleController@deletetitle')->name('delete-title');
+
+     Route::post('/insert-title', 'TitleController@insertTitle')->name('insert-title');
+     Route::post('/insert-sub', 'TitleController@insertSub')->name('insert-sub');
+     Route::post('/insert-logo', 'TitleController@insertLogo')->name('insert-logo');
+     
+     // =======bio route start===================
     Route::get('about-bio', 'AboutController@index')->name('bio');
     Route::get('add-bio', 'AboutController@addBio')->name('add-bio');
     Route::get('edit-bio/{id}', 'AboutController@editBio')->name('edit-bio');

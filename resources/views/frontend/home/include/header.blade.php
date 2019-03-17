@@ -107,7 +107,8 @@
                     <!-- Header Logo Start -->
                     <div class="header--logo">
                         <a href="{{route('/')}}">
-                            <img src="{{asset('/')}}img/logo.png" alt="">
+                            <?php $title= DB::table('titles')->orderBy('id', 'desc')->first(); ?>
+                            <img src="{{asset($title->img)}}" alt="" height="50">
                         </a>
                     </div>
                     <!-- Header Logo End -->

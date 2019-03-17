@@ -68,6 +68,14 @@
 
 
 
+          <li class="nav-item has-treeview">
+              <a href="{{route('title')}}" class="nav-link">
+                <i class="fa fa-circle-o nav-icon"></i>
+                <p>
+                  Title
+                </p>
+              </a>
+            </li>
 
           <li class="nav-item has-treeview">
             <a href="#" class="nav-link">
