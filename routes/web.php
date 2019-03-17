@@ -127,11 +127,13 @@ Route::group(['namespace'=> 'back', 'middleware'=>['auth', 'verified', 'admin']]
     Route::post('/insert-Category', 'BlogController@insertCategory')->name('insert-Category');
     
     // =======Tag route start===================
-    Route::get('/tages', 'TagController@tags')->name('tags');
-    Route::get('/add-tag', 'TagController@addtag')->name('add-tag');
-    Route::get('/edit-tag/{id}', 'TagController@edittag')->name('edit-tag');
-    Route::get('/delete-tag/{id}', 'TagController@deletetag')->name('delete-tag');
-    Route::post('/insert-tag', 'TagController@inserttag')->name('insert-tag');
+    Route::get('/tages', 'TagController@index')->name('tags');
+    Route::get('/add-tag/{id}', 'TagController@addTag')->name('add-tag');
+    Route::post('/tagto-post', 'TagController@addTagTopost')->name('tagto-post');
+    Route::get('/edit-tag/{id}', 'TagController@edittag')->name('blog-editetag');
+    Route::get('/delete-tag/{id}', 'TagController@deletetag')->name('deletetag');
+    Route::get('/deltepost-tag/{id}', 'TagController@deltepost')->name('deltepost-tag');
+    Route::post('/insert-tag', 'TagController@deltepostTag')->name('insert-tag');
     
     
     

@@ -32,6 +32,13 @@ class BlogPost extends Model
     {
         return $this->belongsTo('App\BlogCategory', 'cat_id');
     }
+
+    
+    public function blogpostag()
+    {
+        return $this->hasMany('App\BlogPosTag', 'post_id');
+    }
+    
     
     
 }

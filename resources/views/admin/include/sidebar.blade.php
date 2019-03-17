@@ -122,20 +122,22 @@
               <li class="nav-item">
                 <a href="{{route('blog-cate')}}" class="nav-link">
                   <i class="fa fa-circle-o nav-icon"></i>
-                  <p>Blog Categpries</p>
+                  <p>Categpries</p>
                 </a>
               </li>
+
+              <li class="nav-item has-treeview">
+                  <a href="{{route('tags')}}" class="nav-link">
+                    <i class="nav-icon fa fa-tag"></i>
+                    <p>
+                      Tags
+                    </p>
+                  </a>
+                </li>
             </ul>
           </li>
           
-          <li class="nav-item has-treeview">
-            <a href="{{route('tags')}}" class="nav-link">
-              <i class="nav-icon fa fa-image"></i>
-              <p>
-                Tags
-              </p>
-            </a>
-          </li>
+          
           
           <li class="nav-item has-treeview">
             <a href="{{route('photos')}}" class="nav-link">

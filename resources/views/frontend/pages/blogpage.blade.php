@@ -103,11 +103,12 @@
                         <!-- Post Categories End -->
 
                         <!-- Post Tags Start -->
-                        <ul class="post--tags nav float--left">
+                            <ul class="post--tags nav float--left">
                             <li><strong>Tags:</strong></li>
-                            <li><a href="#">travel</a></li>
-                            <li><a href="#">lifestyle</a></li>
-                            <li><a href="#">popular post</a></li>
+                            @foreach ($blogpost->blogpostag as $blogpostag)
+                            <?php $tag= DB::table('tags')->find($blogpostag->tag_id); ?>
+                            <li><a href="#">{{$tag->slug}}</a></li>
+                            @endforeach
                         </ul>
                         <!-- Post Tags End -->
 

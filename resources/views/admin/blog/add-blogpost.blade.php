@@ -21,7 +21,7 @@
             
             <div class="form-group">
               <label>Category</label>
-              <select name="cat_id" id="my-input" class="form-control">
+              <select name="cat_id" id="my-input" class="form-control" required>
                   <option>Select</option>
                   @foreach ($cat as $cats)
                   <option value="{{$cats->id}}">{{$cats->cat}}</option>
@@ -33,7 +33,7 @@
             <!-- Short textarea -->
             <div class="form-group">
               <label>Post short discretion </label>
-              <textarea name="post_short" id="" class="form-control ckeditor " rows="3" ></textarea>
+              <textarea name="post_short" id="" class="form-control ckeditor " rows="3" required></textarea>
             </div>
             <div class="form-group">
               <label>Photo gallery text</label>
@@ -49,7 +49,7 @@
             <!-- Post details textarea -->
             <div class="form-group">
               <label>Post Details </label>
-              <textarea name="post_details" id="" class="form-control ckeditor" rows="3" ></textarea>
+              <textarea name="post_details" id="" class="form-control ckeditor" rows="3" required></textarea>
             </div>
             
             
@@ -57,12 +57,10 @@
               <label>Media </label>
               <input name="media"  type="text" class="form-control" placeholder="Optional">
             </div>
-            <div class="form-group">
-              <label>Tags </label>
-              <select name="tag" >
-                <option value="">Select Tag Optional</option>
-              </select>
-            </div>
+
+
+
+          
                 
             <div class="form-group" >
                 <label class="col-md-3 " style="margin-top: 20px"> Publication Status</label>

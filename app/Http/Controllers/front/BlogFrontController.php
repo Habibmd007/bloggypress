@@ -23,8 +23,8 @@ class BlogFrontController extends Controller
         ->take(3)
         ->get();
 
+
        
-        // $blogpost = BlogPost::find( $blogpost->id);
         return view('frontend.pages.blogpage', compact('blogposts', 'bp_youlikes'));
     }
 

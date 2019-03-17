@@ -90,24 +90,36 @@
 
 
                     <!-- Post Footer Start -->
-                    <div class="post--footer clearfix pt--40">
+                    <div class="post--footer clearfix pt--40"> 
+
+
                         <!-- Post Categories Start -->
                         <ul class="post--cats nav text-primary">
                             <li><strong>Categories:</strong></li>
-                            <li><a href="#">lifestyle</a></li>
-                            <li><a href="#">travel</a></li>
-                            <li><a href="#">journey</a></li>
-                            <li><a href="#">hobby</a></li>
-                            <li><a href="#">tour</a></li>
+                            <li><a href="#">{{$cat->cat}}</a></li>
+                            
                         </ul>
                         <!-- Post Categories End -->
 
+
+
                         <!-- Post Tags Start -->
+                        <a name="" id="" class="btn btn-primary mb-3" href="{{route('add-tag',['post_id' => $single_post->id])}}" role="button"> <i class="fa fa-plus" aria-hidden="true"></i> Add Tag </a>
+                        @php
+                            $tag_ids= DB::table('blog_pos_tags')->where('post_id',  $single_post->id)->get();
+                        @endphp
                         <ul class="post--tags nav float--left">
                             <li><strong>Tags:</strong></li>
-                            <li><a href="#">travel</a></li>
-                            <li><a href="#">lifestyle</a></li>
-                            <li><a href="#">popular post</a></li>
+                            @foreach ($tag_ids as $tag_id)
+                            <?php $tag= DB::table('tags')->find($tag_id->tag_id); ?>
+                           
+                            <li>
+                                <a href="#">{{$tag->slug}}</a>
+                                <a name="" id="" class="btn btn-primary mb-3" href="{{route('deltepost-tag',['id' => $tag_id->id])}}" role="button"> <i class="fa fa-trash" aria-hidden="true"></i> </a>
+                                <br>
+                            </li>
+                            @endforeach
+                           
                         </ul>
                         <!-- Post Tags End -->
 

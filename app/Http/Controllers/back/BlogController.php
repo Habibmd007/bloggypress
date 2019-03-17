@@ -11,6 +11,8 @@ use App\BlogPost;
 use App\Post;
 use App\BlogPostGallery;
 use App\BlogCategory;
+use App\Tag;
+use App\BlogPosTag;
 
 class BlogController extends Controller
 {
@@ -65,6 +67,19 @@ class BlogController extends Controller
     }
     return redirect('blog-singlepost',['id'=>$request->post_id])->with('msg', 'Error: photos not saved ');
     }
+
+
+
+
+
+
+
+
+
+
+
+
+
     // ===================== Photos function start===============
     public function photos()
     {
@@ -120,6 +135,11 @@ class BlogController extends Controller
     }
     
 
+
+
+
+
+
     // =====================Blog Post function start===============
     public function blogPosts()
     {
@@ -131,7 +151,8 @@ class BlogController extends Controller
     public function addPost()
     {
         $cat= BlogCategory::all();
-        return view('admin.blog.add-blogpost',compact('cat'));
+        $tags= Tag::all();
+        return view('admin.blog.add-blogpost',compact('cat', 'tags'));
     }
 
     public function blogEditePost($id)
@@ -155,9 +176,11 @@ class BlogController extends Controller
                         ->get();
 
         $single_post= BlogPost::find($id);
+        $cat= BlogCategory::find($single_post->cat_id);
+         
+        
 
-
-        return view('admin.blog.post-single',compact('sliders', 'single_post', 'glphotos'));
+        return view('admin.blog.post-single',compact('cat', 'sliders', 'single_post', 'glphotos', 'tags'));
     }
 
     public function insertBlogpost(Request $request)
@@ -175,7 +198,10 @@ class BlogController extends Controller
         $bPost->post_details = $request->post_details;
         $bPost->status = $request->status;
         $bPost->save();
-        return redirect('blog-posts')->with('msg', 'Saved ok');
+
+
+      
+        return redirect('blog-posts')->with('msg', 'Blog Post Saved');
         
     }
     public function updateBlogpost(Request $request)
@@ -209,6 +235,13 @@ class BlogController extends Controller
     }
     
     
+    
+    
+    
+    
+    
+    
+    
     //Delete data from 3 table. 
     public function blogDeletePost($id)
     {
@@ -224,6 +257,12 @@ class BlogController extends Controller
         foreach ($glposts as $glpost) {
             unlink($glpost->img);
             $glpost->delete();
+        }
+
+        $tags = BlogPosTag::where('post_id' ,$id)->get();
+        foreach ($tags as $tag) {
+            
+            $tag->delete();
         }
         
         $blogpost->delete();
