@@ -225,12 +225,30 @@ class BlogController extends Controller
     }
 
     public function featured($id)
-    {
+    {   
+        $featured= BlogPost::where('featured', 1)->first();
+        if (!empty($featured->featured)) {
+            $featured->featured= 0;
+            $featured->save();
+        }
+
         $bpost = BlogPost::find($id);
-        $bpost->featured = 
         $bpost->featured = $bpost->featured==1 ? 0:1;
         $bpost->save();
         return redirect('blog-posts')->with('msg', 'Featured post changed succsessfully');
+
+    }
+    public function picked($id)
+    {   
+        $picked= BlogPost::where('picked', 1)->first();
+        if (!empty($picked->picked)) {
+            $picked->picked= 0;
+            $picked->save();
+        }
+        $bpost = BlogPost::find($id);
+        $bpost->picked = $bpost->picked==1 ? 0:1;
+        $bpost->save();
+        return redirect('blog-posts')->with('msg', 'EDITORS PICKS changed succsessfully');
 
     }
     

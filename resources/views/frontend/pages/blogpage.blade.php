@@ -10,7 +10,7 @@
                 
 
                 <!-- Post Item Start -->
-                @foreach ($blogposts as $blogpost)
+                {{-- @foreach ($blogposts as $blogpost) --}}
 
                 @php
                     $sliders= DB::table('sliders')->where('blogpost_id', $blogpost->id)->where('status', 1)->get();
@@ -136,7 +136,7 @@
                     </div>
                     <!-- Post Footer End -->
                 </div>
-                @endforeach
+                {{-- @endforeach --}}
 
                 <!-- Post Item End -->
 
@@ -151,8 +151,8 @@
                 <!-- Pager Start -->
                 <div class="pager--wrapper pt--50">
                     <ul class="pager nav ff--primary">
-                        <li><a href="{{$blogposts->previousPageUrl()}}"><i class="fa fa-long-arrow-left"></i>Older Posts</a></li>
-                        <li><a href="{{$blogposts->nextPageUrl()}}">Newer Posts<i class="fa fa-long-arrow-right"></i></a></li>
+                        <li><a href="{{route('oldOne',['id'=> $blogpost->id])}}"><i class="fa fa-long-arrow-left"></i>Older Posts</a></li>
+                        <li><a href="{{route('nextOne',['id'=> $blogpost->id])}}">Newer Posts<i class="fa fa-long-arrow-right"></i></a></li>
                     </ul>
                 </div>
                 <!-- Pager End -->

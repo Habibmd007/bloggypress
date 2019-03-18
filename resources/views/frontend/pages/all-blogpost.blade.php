@@ -64,8 +64,13 @@
                                                 </p>
                 
                                                 <p class="float--right">
-                                                    <i class="fa fa-heart-o text-primary"></i>
-                                                    <span>{{$all_post->comments->count()}}</span>
+                                                        <a href="{{route('like', ['id' => $all_post->id])}}">
+                                                            <i class="fa fa-heart-o text-primary"></i>
+                                                            @php
+                                                                $likes= DB::table('likes')->where('post_id', $all_post->id)->count();
+                                                            @endphp
+                                                            <span>{{$likes}}</span>
+                                                        </a>
                                                 </p>
                 
                                                 <p class="float--right">

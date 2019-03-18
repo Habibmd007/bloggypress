@@ -9,6 +9,8 @@
             <a name="" id="" class="btn btn-info mb-3" href="{{route('blog-singlepost',['id' => $post->id])}}" role="button"> <i class="fa fa-eye" aria-hidden="true"></i> View </a>
             <a name="" id="" class="btn btn-warning mb-3" href="{{route('blog-editepost',['id' => $post->id])}}" role="button"> <i class="fa fa-edit" aria-hidden="true"></i> Edit </a>
             <a name="" id="" class="btn btn-danger mb-3" href="{{route('blog-deletepost',['id' => $post->id])}}" role="button" onclick="return confirm('Are sure delete this ??? ')"> <i class="fa fa-trash" aria-hidden="true"></i> Delete </a>
+            <a href="{{route('edit-featured',['id' => $post->id ])}}" class="btn btn-info  mb-3" role="button">{{ $post->featured==1 ?"Featured" : "Feature It"}}</a>
+            <a href="{{route('edit-picked',['id' => $post->id ])}}" class="btn btn-success  mb-3" role="button">{{ $post->picked==1 ?"EDITOR'S PICKS" : "Make Edi. Pic:"}}</a>
 
             <a href="{{route('blog-singlepost',['id' => $post->id])}}">
                 @php
@@ -38,7 +40,6 @@
                                 </div>
                                 <!-- Post Title End -->
 
-                                 <a href="{{route('edit-featured',['id' => $post->id ])}}" class="btn btn-info" role="button">{{ $post->featured==1 ?"Featured" : "Feature it"}}</a>
 
                             </div>
                             <!-- Post Item End -->

@@ -66,8 +66,13 @@
                                 </p>
 
                                 <p class="float--right">
-                                    <i class="fa fa-heart-o text-primary"></i>
-                                    <span>{{$home_1st->comments->count()}}</span>
+                                        <a href="{{route('like', ['id' => $home_1st->id])}}">
+                                            <i class="fa fa-heart-o text-primary"></i>
+                                            @php
+                                                $likes1= DB::table('likes')->where('post_id', $home_1st->id)->count();
+                                            @endphp
+                                            <span>{{$likes1}}</span>
+                                        </a>
                                 </p>
 
                                 <p class="float--right">
@@ -141,8 +146,13 @@
                                     </p>
     
                                     <p class="float--right">
-                                        <i class="fa fa-heart-o text-primary"></i>
-                                        <span>{{$home_2nd->comments->count()}}</span>
+                                            <a href="{{route('like', ['id' => $home_2nd->id])}}">
+                                                <i class="fa fa-heart-o text-primary"></i>
+                                                @php
+                                                    $likes2= DB::table('likes')->where('post_id', $home_2nd->id)->count();
+                                                @endphp
+                                                <span>{{$likes2}}</span>
+                                            </a>
                                     </p>
     
                                     <p class="float--right">
@@ -223,8 +233,13 @@
                                     </p>
     
                                     <p class="float--right">
-                                        <i class="fa fa-heart-o text-primary"></i>
-                                        <span>{{$home_3rds->comments->count()}}</span>
+                                            <a href="{{route('like', ['id' => $home_3rds->id])}}">
+                                                <i class="fa fa-heart-o text-primary"></i>
+                                                @php
+                                                    $likes= DB::table('likes')->where('post_id', $home_3rds->id)->count();
+                                                @endphp
+                                                <span>{{$likes}}</span>
+                                            </a>
                                     </p>
     
                                     <p class="float--right">
@@ -303,8 +318,13 @@
                                     </p>
     
                                     <p class="float--right">
-                                        <i class="fa fa-heart-o text-primary"></i>
-                                        <span>{{$home_4th->comments->count()}}</span>
+                                        <a href="{{route('like', ['id' => $home_4th->id])}}">
+                                            <i class="fa fa-heart-o text-primary"></i>
+                                            @php
+                                                $likes= DB::table('likes')->where('post_id', $home_4th->id)->count();
+                                            @endphp
+                                            <span>{{$likes}}</span>
+                                        </a>
                                     </p>
     
                                     <p class="float--right">

@@ -21,6 +21,7 @@ class CreateBlogPostsTable extends Migration
             $table->string('head');
             $table->text('media')->nullable();
             $table->tinyInteger('featured')->default(0)->nullable();
+            $table->tinyInteger('picked')->default(0)->nullable();
             $table->text('post_short')->nullable();
             $table->text('photo_gallery_text')->nullable();
             $table->text('qoute')->nullable();

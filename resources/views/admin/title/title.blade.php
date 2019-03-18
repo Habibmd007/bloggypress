@@ -8,6 +8,29 @@
 
     <div class="card">
         <div class="card-header">
+            Favicon.png only
+        </div>
+
+        <div class="card-body">
+            <div class="img-circle">
+                <img src="{{asset($title->favicon)}}" alt="" height="100">
+            </div>
+        </div>
+    </div>
+    <div class="card">
+        <div class="card-header">
+            Logo
+        </div>
+
+        <div class="card-body">
+            <div class="img-circle">
+                <img src="{{asset($title->img)}}" alt="" height="100">
+            </div>
+        </div>
+    </div>
+
+    <div class="card">
+        <div class="card-header">
             title
         </div>
 
@@ -28,23 +51,50 @@
             </div>
         </div>
     </div>
-    <div class="card">
-        <div class="card-header">
-            Logo
-        </div>
 
-        <div class="card-body">
-            <div class="img-circle">
-                <img src="{{asset($title->img)}}" alt="" height="100">
-            </div>
-        </div>
-    </div>
+   
 
 
 </div> 
 
 
 <div class="col-md-6">
+        <div class="card">
+                <div class="card-body">
+                
+                <form action="{{route('insert-favicon')}}" method="post" enctype="multipart/form-data">
+                    @csrf
+                    <div class="form-group">
+                        <label for="Logo">favicon</label>
+                      <input type="file" class="form-control" name="img" id="tag" aria-describedby="helpId" >
+                    </div>
+                    
+                    <div class="form-group">
+                        <button type="submit" class="btn btn-info ">Save</button>
+                    </div>
+                </form>
+    
+            </div>
+            </div>
+        <div class="card">
+                <div class="card-body">
+                
+                <form action="{{route('insert-logo')}}" method="post" enctype="multipart/form-data">
+                    @csrf
+                    <div class="form-group">
+                        <label for="Logo">Logo</label>
+                      <input type="file" class="form-control" name="img" id="tag" aria-describedby="helpId">
+                    </div>
+                    
+                    <div class="form-group">
+                        <button type="submit" class="btn btn-info ">Save</button>
+                    </div>
+                </form>
+    
+            </div>
+            </div>
+
+
         <div class="card">
             <div class="card-header">
                     Blog title  
@@ -82,23 +132,7 @@
         </div>
         </div>
             
-        <div class="card">
-            <div class="card-body">
-            
-            <form action="{{route('insert-logo')}}" method="post" enctype="multipart/form-data">
-                @csrf
-                <div class="form-group">
-                    <label for="Logo">Logo</label>
-                  <input type="file" class="form-control" name="img" id="tag" aria-describedby="helpId" placeholder="Sub-Title">
-                </div>
-                
-                <div class="form-group">
-                    <button type="submit" class="btn btn-info ">Save</button>
-                </div>
-            </form>
-
-        </div>
-        </div>
+       
 
     </div>
 </div>

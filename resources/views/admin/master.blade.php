@@ -12,6 +12,16 @@
           <div class="row mb-2">
             <div class="col-sm-6">
               <h1 class="m-0 text-dark">{{Session::get('msg')}}</h1>
+              @if ($errors->any())
+                  <div class="alert alert-danger">
+                      <ul>
+                          @foreach ($errors->all() as $error)
+                              <li>{{ $error }}</li>
+                          @endforeach
+                      </ul>
+                  </div>
+              @endif
+
              
             </div><!-- /.col -->
             <div class="col-sm-6">

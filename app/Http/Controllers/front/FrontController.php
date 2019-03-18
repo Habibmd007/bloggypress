@@ -9,14 +9,15 @@ use App\Post;
 use App\Info;
 use App\BlogCategory;
 use App\BlogPost;
+use Illuminate\Support\Facades\Mail;
 
 class FrontController extends Controller
 {
     public function index()
     {
+
         $cats= BlogCategory::orderBy('id', 'DESC')->take(4)->get();
         $featured= BlogPost::where('featured', 1)->first();
-     
         $home_1st= BlogPost::orderBy('id', 'DESC')->first();
         $home_2nds= BlogPost::orderBy('id', 'DESC')->skip(1)->take(2)->get();
         $home_3rds= BlogPost::orderBy('id', 'DESC')->skip(3)->first();
@@ -67,8 +68,38 @@ class FrontController extends Controller
     {
         return view('frontend.pages.category');
     }
+
+
     public function contact()
     {
         return view('frontend.contact.contact');
+    }
+
+    public function submitContact(Request $request)
+    {
+        $this->validate($request, [
+            'name' => 'required|min:4|max:50',
+            'email' => 'required|email',
+            'subject' => 'required|min:5',
+            'message' => 'required|min:10|max:1000',
+        ]);
+
+        $data= array(
+            'name' => $request->name,
+            'email' => $request->email,
+            'subject' => $request->subject,
+            'txtmessage' => $request->message,
+        );
+        Mail::send('admin.email.email', $data, function ($message) use ($data) {
+            $message->from($data['email'], $data['name']);
+            $message->to('habibmd007@gmail.com', 'Habiiib');
+            $message->subject($data['subject']);
+           
+        });
+
+        return redirect('contact')->with('msg', 'Emai has been send succsessfully');
+
+
+        
     }
 }

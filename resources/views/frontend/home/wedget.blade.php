@@ -1,19 +1,21 @@
 <!-- Widget Start -->
                 <div class="widget">
                     <h2 class="h4 widget--title">About Me</h2>
-
+                    @php
+                        $bio= DB::table('bios')->find(12);
+                    @endphp
                     <!-- About Widget Start -->
                     <div class="about--widget pb--3 text-center">
                         <div class="img">
-                            <a href="about.html">
-                                <img src="{{asset('/')}}img/widgets-img/about-avatar.jpg" alt="" class="img-circle">
+                            <a href="{{route('about-author',['id'=> $bio->id])}}">
+                                <img src="{{asset($bio->img)}}" alt="" class="img-circle">
                             </a>
                         </div>
 
                         <div class="info">
-                            <h3 class="name h5 text-primary"><a href="about.html" class="btn-link">Karen Rosalie</a></h3>
+                            <h3 class="name h5 text-primary"><a href="{{route('about-author',['id'=> $bio->id])}}" class="btn-link">{{$bio->name}}</a></h3>
 
-                            <p class="role">Photographer &amp; Blogger</p>
+                            <p class="role">{{$bio->desig}}</p>
                         </div>
 
                         <div class="social">
@@ -27,12 +29,17 @@
                         </div>
 
                         <div class="bio">
-                            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Excepturi veritatis sapiente emit poribus...</p>
+                            <p>{{substr($bio->text, 1, 100)}}</p>
                             
-                            <p><a href="about.html">Read More</a></p>
+                            <p><a href="{{route('about-author',['id'=> $bio->id])}}">Read More</a></p>
                         </div>
                     </div>
                     <!-- About Widget End -->
+
+                    
+
+
+
                 </div>
                 <!-- Widget End -->
 
@@ -72,31 +79,63 @@
                 </div>
                 <!-- Widget End -->
 
+
+
+
+
+
+
+
+
+
+
                 <!-- Widget Start -->
                 <div class="widget">
-                    <h2 class="h4 widget--title">Editor's Picks</h2>
-
+                    <h2 class="h4 widget--title">Editors Picks</h2>
+                    @php
+                        $picked= DB::table('blog_posts')
+                                    ->join('blog_categories', 'blog_posts.cat_id', '=', 'blog_categories.id')
+                                    ->join('users', 'blog_posts.user_id', '=', 'users.id')
+                                    ->select('blog_posts.*', 'blog_categories.cat', 'users.name')
+                                    ->where('picked', 1)->first();
+                    @endphp
                     <!-- Post Widget Start -->
                     <div class="post--widget pb--3 text-center">
-                        <div class="img">
-                            <a href="blog-details.html"><img src="{{asset('/')}}img/widgets-img/editor-pick.jpg" alt=""></a>
-                        </div>
+                            @if (isset($picked->sli_img))
+                                <div class="img">
+                                    <a href="blog-details.html"><img src="{{asset($picked->sli_img)}}" alt=""></a>
+                                </div>
+                            @else
+                            <div class="post--video">
+                                    {!!$picked->media!!}
+                                </div>
+                            @endif
 
                         <div class="cat text-white" data-overlay="0.5" data-overlay-color="primary">
-                            <p><a href="#" class="btn-link">Travel</a></p>
+                            <p><a href="#" class="btn-link">{{$picked->cat}}</a></p>
                         </div>
 
                         <div class="title">
-                            <h3 class="h5"><a href="blog-details.html" class="btn-link">Wherever You Go, I'll Be There</a></h3>
+                            <h3 class="h5"><a href="{{route('blog-post',['id'=> $picked->id])}}" class="btn-link">{{$picked->head}}</a></h3>
                         </div>
 
                         <div class="meta">
-                            <p><i class="fa fa-clock-o text-primary"></i> 12 June 2017 <a href="#">by John Doe</a></p>
+                            <p><i class="fa fa-clock-o text-primary"></i>{{$picked->created_at}} <a href="{{route('bio',['id'=> $picked->user_id])}}">{{$picked->name}}</a></p>
                         </div>
                     </div>
                     <!-- Post Widget End -->
                 </div>
                 <!-- Widget End -->
+
+
+
+
+
+
+
+
+
+
 
                 <!-- Widget Start -->
                 <div class="widget">
@@ -221,38 +260,23 @@
                     <h2 class="h4 widget--title">Categories</h2>
 
                     <!-- Links Widget Start -->
+                    @php
+                        $cats= DB::table('blog_categories')->get();
+                    @endphp
                     <div class="links--widget pb--10">
                         <ul class="nav">
+                            @foreach ($cats as $cat)
+                                
                             <li>
-                                <a href="#">
-                                    <span class="text">Travel</span>
-                                    <span class="count">5</span>
+                                <a href="{{route('post-bycat',['id'=> $cat->id])}}">
+                                    <span class="text">{{$cat->cat}}</span>
+                                    <span class="count">
+                                        {{$count= DB::table('blog_posts')->where('cat_id', $cat->id)->count()}}
+                                    </span>
                                 </a>
                             </li>
-                            <li>
-                                <a href="#">
-                                    <span class="text">Music</span>
-                                    <span class="count">7</span>
-                                </a>
-                            </li>
-                            <li>
-                                <a href="#">
-                                    <span class="text">Foods</span>
-                                    <span class="count">4</span>
-                                </a>
-                            </li>
-                            <li>
-                                <a href="#">
-                                    <span class="text">Nature</span>
-                                    <span class="count">14</span>
-                                </a>
-                            </li>
-                            <li>
-                                <a href="#">
-                                    <span class="text">Beauty</span>
-                                    <span class="count">6</span>
-                                </a>
-                            </li>
+                            @endforeach
+                            
                         </ul>
                     </div>
                     <!-- Links Widget End -->

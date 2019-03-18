@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Comment;
 use App\Reply;
+use App\Like;
+use Illuminate\Support\Facades\Auth;
 
 class CommentController extends Controller
 {
@@ -70,5 +72,26 @@ class CommentController extends Controller
         $reply = Reply::find($id);
         $reply->delete();
         return redirect()->back();
+    }
+
+    // ===============Like start==================
+    public function like($id)
+    {
+        $like= Like::where('post_id',$id)->first();
+        if (!empty($like)) {
+            $like->delete();
+        return redirect()->back();
+
+        } else {
+            $like= new Like();
+            $like->user_id = Auth::user()->id;
+            $like->post_id = $id;
+            $like->like = $like->like == true ?false : true;
+            $like->save();
+             return redirect()->back();
+
+        }
+        
+        
     }
 }

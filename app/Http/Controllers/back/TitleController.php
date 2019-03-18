@@ -19,7 +19,7 @@ class TitleController extends Controller
     public function insertTitle(Request $request)
     {
         $title= Title::orderBy('id', 'DESC')->first();
-        if (isset($title->title)) {
+        if (!empty($title->title)) {
             $title->title = "";
         }
 
@@ -35,7 +35,7 @@ class TitleController extends Controller
     public function insertSub(Request $request)
     {
         $title= Title::orderBy('id', 'DESC')->first();
-        if (isset($title->sub)) {
+        if (!empty($title->sub)) {
             $title->sub = "";
         }
 
@@ -50,7 +50,7 @@ class TitleController extends Controller
     public function insertLogo(Request $request)
     {
         $title= Title::orderBy('id', 'DESC')->first();
-        if (isset($title->img)) {
+        if (!empty($title->img)) {
             unlink($title->img);
             $title->img = "";
         }
@@ -61,5 +61,25 @@ class TitleController extends Controller
         $title->img = $img_url;
         $title->save();
         return redirect()->back()->with('msg', 'Logo saved successfully');
+    }
+   
+    public function insertFavicon(Request $request)
+    {
+        $this->validate($request, [
+            'img' => 'required|mimes:png,ico|max:1024',
+        ]);
+
+        $title= Title::orderBy('id', 'DESC')->first();
+        if (!empty($title->favicon)) {
+            unlink($title->favicon);
+            $title->favicon = "";
+        }
+
+        $title= Title::find($title->id);
+        $img_save= new Bio();
+        $img_url = $img_save->imgfinal($request);
+        $title->favicon = $img_url;
+        $title->save();
+        return redirect()->back()->with('msg', 'Favicon saved successfully');
     }
 }

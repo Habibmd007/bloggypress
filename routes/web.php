@@ -21,9 +21,13 @@ Route::group(['namespace' => 'front'], function () {
 
     Route::get('/category', 'FrontController@category')->name('category');
     Route::get('/contact', 'FrontController@contact')->name('contact');
+    Route::post('/submit-contact', 'FrontController@submitContact')->name('submit-contact');
     
     Route::get('/blogpost-new', 'BlogFrontController@blogpostNew')->name('blogpost-new');
     Route::get('/blogpost-old', 'BlogFrontController@blogpostOld')->name('blogpost-old');
+   
+    Route::get('/nextOne/{id}', 'BlogFrontController@nextOne')->name('nextOne');
+    Route::get('/oldOne/{id}', 'BlogFrontController@oldOne')->name('oldOne');
     
     Route::get('/blog-post/{id}', 'BlogFrontController@blogPost')->name('blog-post');
     Route::get('/post-bycat/{id}', 'FrontController@postBycat')->name('post-bycat');
@@ -35,6 +39,7 @@ Route::group(['namespace' => 'front'], function () {
 });
 Route::group([ 'middleware'=>['auth', 'verified']], function () {
 
+    Route::get('/like/{id}', 'CommentController@like')->name('like');
     Route::post('/insert-comment', 'CommentController@insert')->name('insert-comment');
     Route::post('/edit-comment', 'CommentController@editComment')->name('edit-comment');
     Route::get('/delete-comment/{id}', 'CommentController@deleteComment')->name('delete-comment');
@@ -56,14 +61,10 @@ Route::group([ 'middleware'=>['auth', 'verified']], function () {
 Route::group(['namespace'=> 'back', 'middleware'=>['auth', 'verified', 'admin']], function () {
     // =======title route start===================
      Route::get('/title', 'TitleController@title')->name('title');
-     Route::get('/title', 'TitleController@title')->name('title');
-     Route::get('/add-title', 'TitleController@addtitle')->name('add-title');
-     Route::get('/edit-title/{id}', 'TitleController@edittitle')->name('edit-title');
-     Route::get('/delete-title/{id}', 'TitleController@deletetitle')->name('delete-title');
-
      Route::post('/insert-title', 'TitleController@insertTitle')->name('insert-title');
      Route::post('/insert-sub', 'TitleController@insertSub')->name('insert-sub');
      Route::post('/insert-logo', 'TitleController@insertLogo')->name('insert-logo');
+     Route::post('/insert-favicon', 'TitleController@insertFavicon')->name('insert-favicon');
      
      // =======bio route start===================
     Route::get('about-bio', 'AboutController@index')->name('bio');
@@ -103,6 +104,7 @@ Route::group(['namespace'=> 'back', 'middleware'=>['auth', 'verified', 'admin']]
     Route::get('blog-singlepost/{id}', 'BlogController@blogSinglepost')->name('blog-singlepost');
     Route::get('blog-editepost/{id}', 'BlogController@blogEditePost')->name('blog-editepost');
     Route::get('edit-featured/{id}', 'BlogController@featured')->name('edit-featured');
+    Route::get('edit-picked/{id}', 'BlogController@picked')->name('edit-picked');
     Route::get('blog-deletepost/{id}', 'BlogController@blogDeletePost')->name('blog-deletepost');
     Route::post('insert-blogpost', 'BlogController@insertBlogpost')->name('insert-blogpost');
     Route::post('update-blogpost', 'BlogController@updateBlogpost')->name('update-blogpost');

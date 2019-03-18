@@ -68,9 +68,16 @@
             </div>
         </div>
 
+
+
+
+
+
+
         <!-- Contact Form Start -->
         <div class="contact--form pb--60">
-            <form action="forms/contact-form.php" data-form="ajax">
+            <form action="{{route('submit-contact')}}" data-form="ajaxxx" method="POST">
+                @csrf
                 <div class="status"></div>
 
                 <div class="row">

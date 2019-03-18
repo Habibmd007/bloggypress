@@ -14,7 +14,8 @@
     <meta name="author" content="ThemeLooks">
 
     <!-- ==== Favicon ==== -->
-    <link rel="icon" href="{{asset('/')}}img/favicon.png" type="image/png">
+    <?php $title= DB::table('titles')->orderBy('id', 'desc')->first(); ?>
+    <link rel="icon" href="{{asset($title->favicon)}}" type="image/png">
 
     <!-- ==== Google Font ==== -->
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:400,600,700%7CPlayfair+Display:400,700">
@@ -137,3 +138,12 @@
             <!-- Header Navbar End -->
         </header>
         <!-- Header Section End -->
+        @if ($errors->any())
+            <div class="alert alert-danger">
+                <ul>
+                    @foreach ($errors->all() as $error)
+                        <li>{{ $error }}</li>
+                    @endforeach
+                </ul>
+            </div>
+        @endif
