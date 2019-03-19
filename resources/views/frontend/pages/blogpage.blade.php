@@ -37,9 +37,14 @@
                         </p>
 
                         <p class="float--right">
-                            <i class="fa fa-heart-o text-primary"></i>
-                            <span>112</span>
-                        </p>
+                            <a href="{{route('like', ['id' => $blogpost->id])}}">
+                                <i class="fa fa-heart-o text-primary"></i>
+                                @php
+                                    $likes= DB::table('likes')->where('post_id', $blogpost->id)->count();
+                                @endphp
+                                <span>{{$likes}}</span>
+                            </a>
+                    </p>
 
                         {{-- comment and reply count --}}
                        

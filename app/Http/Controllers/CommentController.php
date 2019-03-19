@@ -12,6 +12,11 @@ class CommentController extends Controller
 {
     public function insert(Request $rquest)
     {
+        $this->validate($rquest,[
+            'comment'     => 'required|max:250',
+            'user_id' => 'required',
+        ]);
+
         $cmmnt = new Comment();
         $cmmnt->blog_post_id = $rquest->blog_post_id;
         $cmmnt->user_id = $rquest->user_id;
@@ -22,6 +27,11 @@ class CommentController extends Controller
     
     public function editComment(Request $rquest)
     {
+        $this->validate($rquest,[
+            'comment'     => 'required|max:250',
+            'user_id' => 'required',
+        ]); 
+
         $cmmnt =  Comment::find($rquest->id);
         // return  $rquest->comment;
         $cmmnt->comment = $rquest->comment;
@@ -49,6 +59,11 @@ class CommentController extends Controller
     
     public function reply(Request $rquest)
     {
+        $this->validate($rquest,[
+            'reply'     => 'required|max:250',
+            'user_id' => 'required',
+        ]);
+
         $cmmnt = new Reply();
         $cmmnt->blogpost_id = $rquest->blogpost_id;
         $cmmnt->user_id = $rquest->user_id;
@@ -60,8 +75,12 @@ class CommentController extends Controller
 
     public function editReply(Request $rquest)
     {
+        $this->validate($rquest,[
+            'reply'     => 'required|max:250',
+            'user_id' => 'required',
+        ]);
+
         $reply =  Reply::find($rquest->id);
-        // return  $rquest->reply;
         $reply->reply = $rquest->reply;
         $reply->save();
         return redirect()->back();

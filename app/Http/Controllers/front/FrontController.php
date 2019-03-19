@@ -14,21 +14,22 @@ use Illuminate\Support\Facades\Mail;
 class FrontController extends Controller
 {
     public function index()
-    {
-
+    {   
+        $views= BlogPost::where('status', 1)->orderBy('view', 'desc')->take(3)->get();
         $cats= BlogCategory::orderBy('id', 'DESC')->take(4)->get();
         $featured= BlogPost::where('featured', 1)->first();
         $home_1st= BlogPost::orderBy('id', 'DESC')->first();
         $home_2nds= BlogPost::orderBy('id', 'DESC')->skip(1)->take(2)->get();
         $home_3rds= BlogPost::orderBy('id', 'DESC')->skip(3)->first();
         $home_4ths= BlogPost::orderBy('id', 'DESC')->skip(4)->take(2)->get();
-        return view('frontend.home.blog', compact('cats', 'featured', 'feat_cat', 'home_1st','home_2nds', 'home_3rds', 'home_4ths'));
+        return view('frontend.home.blog', compact('views','cats', 'featured', 'feat_cat', 'home_1st','home_2nds', 'home_3rds', 'home_4ths'));
     }
     
     public function postBycat($id)
     {
+        $views= BlogPost::where('status', 1)->orderBy('view', 'desc')->take(3)->get();
         $cat_posts= BlogPost::where('cat_id', $id)->paginate(12);
-        return view('frontend.pages.category', compact('cat_posts'));
+        return view('frontend.pages.category', compact('views','cat_posts'));
     }
 
     public function aboutAuthor($id)
@@ -49,9 +50,11 @@ class FrontController extends Controller
     
     public function author($id)
     {
+        $views= BlogPost::where('status', 1)->orderBy('view', 'desc')->take(3)->get();
+        
         $bio= Bio::where('user_id', $id)->first();
         $author_posts= BlogPost::where('user_id', $id)->paginate(10);
-        return view('frontend.pages.author', compact('bio', 'author_posts'));
+        return view('frontend.pages.author', compact('views','bio', 'author_posts'));
     }
 
     // public function aboutAuthor($id)

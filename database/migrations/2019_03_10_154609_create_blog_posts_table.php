@@ -18,6 +18,7 @@ class CreateBlogPostsTable extends Migration
             $table->integer('user_id');
             $table->string('cat_id');
             $table->tinyInteger('tag_id')->nullable();
+            $table->tinyInteger('view')->nullable();
             $table->string('head');
             $table->text('media')->nullable();
             $table->tinyInteger('featured')->default(0)->nullable();

@@ -144,50 +144,48 @@
                     <!-- Posts Widget Start -->
                     <div class="posts--widget pb--10">
                         <ul class="nav">
+                           
+                            
+                            @foreach ($views as $view)
+                                
                             <li class="clearfix">
+
+                                @if (isset($view->slider->sli_img))
                                 <div class="img">
-                                    <a href="blog-details.html"><img src="{{asset('/')}}img/widgets-img/latest-post-01.jpg" alt=""></a>
+                                    <a href="{{route('blog-post',['id'=> $view->id])}}"><img src="{{asset($view->slider->sli_img)}}" alt=""></a>
                                 </div>
+                                @else
+                                <div class="post--video">
+                                    {!!$view->media!!}
+                                    </div>
+                                @endif
+                                
 
                                 <div class="info">
-                                    <a href="#" class="cat" data-overlay="0.5" data-overlay-color="primary">Travel</a>
+                                    <a href="{{route('blog-post',['id'=> $view->id])}}" class="cat" data-overlay="0.5" data-overlay-color="primary">{{$view->category->cat}}</a>
 
-                                    <h3 class="h5"><a href="blog-details.html" class="btn-link">Wherever You Go, I'll Be There</a></h3>
+                                    <h3 class="h5"><a href="{{route('blog-post',['id'=> $view->id])}}" class="btn-link">{{substr($view->head, 0,25)}}</a></h3>
 
-                                    <p class="date"><i class="fa fa-clock-o text-primary"></i> <a href="#" class="btn-link">12 June 2017</a></p>
+                                    <p class="date"><i class="fa fa-clock-o text-primary"></i> <a href="{{route('blog-post',['id'=> $view->id])}}" class="btn-link">{{$view->created_at}}</a></p>
                                 </div>
                             </li>
-                            <li class="clearfix">
-                                <div class="img">
-                                    <a href="blog-details.html"><img src="{{asset('/')}}img/widgets-img/latest-post-02.jpg" alt=""></a>
-                                </div>
 
-                                <div class="info">
-                                    <a href="#" class="cat" data-overlay="0.5" data-overlay-color="primary">Travel</a>
+                            @endforeach
 
-                                    <h3 class="h5"><a href="blog-details.html" class="btn-link">Wherever You Go, I'll Be There</a></h3>
-
-                                    <p class="date"><i class="fa fa-clock-o text-primary"></i> <a href="#" class="btn-link">12 June 2017</a></p>
-                                </div>
-                            </li>
-                            <li class="clearfix">
-                                <div class="img">
-                                    <a href="blog-details.html"><img src="{{asset('/')}}img/widgets-img/latest-post-03.jpg" alt=""></a>
-                                </div>
-
-                                <div class="info">
-                                    <a href="#" class="cat" data-overlay="0.5" data-overlay-color="primary">Travel</a>
-
-                                    <h3 class="h5"><a href="blog-details.html" class="btn-link">Wherever You Go, Ill Be There</a></h3>
-
-                                    <p class="date"><i class="fa fa-clock-o text-primary"></i> <a href="#" class="btn-link">12 June 2017</a></p>
-                                </div>
-                            </li>
+                            
                         </ul>
                     </div>
                     <!-- Posts Widget End -->
                 </div>
                 <!-- Widget End -->
+
+
+
+
+
+
+
+
 
                 <!-- Widget Start -->
                 <div class="widget">

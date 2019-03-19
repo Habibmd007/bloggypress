@@ -1,3 +1,13 @@
+@if ($errors->any())
+    <div class="alert alert-danger">
+        <ul>
+            @foreach ($errors->all() as $error)
+                <li>{{ $error }}</li>
+            @endforeach
+        </ul>
+    </div>
+@endif
+
 <div id="comments" class="post--comments pt--40">
     <div class="post--comments-title text-uppercase text-center">
         <h2 class="h5">{{$blogpost->comments->count() + $ttlrep}} Comments</h2>

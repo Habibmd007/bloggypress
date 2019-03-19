@@ -22,14 +22,16 @@ class BlogFrontController extends Controller
         ->orderBy('id', 'DESC')
         ->take(3)
         ->get();
+        $views= BlogPost::where('status', 1)->orderBy('view', 'desc')->take(3)->get();
 
-        return view('frontend.pages.blogpage', compact('blogpost', 'bp_youlikes'));
+        return view('frontend.pages.blogpage', compact('views','blogpost', 'bp_youlikes'));
       
        
     }
  
     public function nextOne($id)
     {
+        $views= BlogPost::where('status', 1)->orderBy('view', 'desc')->take(3)->get();
         $blogpost= BlogPost::where('id', '>', $id)->where('status', 1)->first();
 
         $bp_youlikes= BlogPost::where('status', 1)
@@ -38,20 +40,20 @@ class BlogFrontController extends Controller
         ->get();
 
         if (isset($blogpost)) {
-            return view('frontend.pages.blogpage', compact('blogpost', 'bp_youlikes'));
+            return view('frontend.pages.blogpage', compact('views','blogpost', 'bp_youlikes'));
         }else {
             $blogpost= BlogPost::where('id', $id)->where('status', 1)
             ->orderBy('id', 'DESC')
             ->first();
 
-            return view('frontend.pages.blogpage', compact('blogpost', 'bp_youlikes'));
+            return view('frontend.pages.blogpage', compact('views','blogpost', 'bp_youlikes'));
         }
        
     }
     
     public function oldOne($id)
     {
-        
+        $views= BlogPost::where('status', 1)->orderBy('view', 'desc')->take(3)->get();
         $blogpost= BlogPost::where('id', '<', $id)->where('status', 1)->orderBy('id', 'DESC')->first();
 
         $bp_youlikes= BlogPost::where('status', 1)
@@ -60,12 +62,12 @@ class BlogFrontController extends Controller
                                 ->get();
 
         if (isset($blogpost)) {
-            return view('frontend.pages.blogpage', compact('blogpost', 'bp_youlikes'));
+            return view('frontend.pages.blogpage', compact('views','blogpost', 'bp_youlikes'));
         }else {
             $blogpost= BlogPost::where('id', $id)->where('status', 1)
                                 ->orderBy('id', 'DESC')
                                 ->first();
-            return view('frontend.pages.blogpage', compact('blogpost', 'bp_youlikes'));
+            return view('frontend.pages.blogpage', compact('views','blogpost', 'bp_youlikes'));
         }
        
     }
@@ -74,13 +76,17 @@ class BlogFrontController extends Controller
 
     public function blogpostNew()
     {
+        $views= BlogPost::where('status', 1)->orderBy('view', 'desc')->take(3)->get();
+
         $all_posts= BlogPost::orderBy('id', 'DESC')->paginate(4);
-        return view('frontend.pages.all-blogpost', compact('all_posts'));
+        return view('frontend.pages.all-blogpost', compact('views','all_posts'));
     }
     public function blogpostOld()
     {
+        $views= BlogPost::where('status', 1)->orderBy('view', 'desc')->take(3)->get();
+
         $all_posts= BlogPost::paginate(4);
-        return view('frontend.pages.all-blogpost', compact('all_posts'));
+        return view('frontend.pages.all-blogpost', compact('views','all_posts'));
     }
 
    
