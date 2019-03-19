@@ -288,21 +288,22 @@
                     <!-- Links Widget Start -->
                     <div class="links--widget">
                         <ul class="nav">
+                            @php
+                            $archive= DB::table('blog_posts')->selectRaw('year(created_at) year, monthname(created_at) month, count(*)')
+                            ->groupBy('year', 'month')
+                            ->get();
+                            @endphp
+
+                            @foreach ($archive as $archiv)
+                                
+                            @endforeach
                             <li>
                                 <a href="#">
-                                    <span class="text">March 2017</span>
+                                    <span class="text">{{$archiv->year. ".". " " }}</span>
+                                    <span class="text">{{ $archiv->month}}</span>
                                 </a>
                             </li>
-                            <li>
-                                <a href="#">
-                                    <span class="text">February 2017</span>
-                                </a>
-                            </li>
-                            <li>
-                                <a href="#">
-                                    <span class="text">January 2017</span>
-                                </a>
-                            </li>
+                            
                         </ul>
                     </div>
                     <!-- Links Widget End -->

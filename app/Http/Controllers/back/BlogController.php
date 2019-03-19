@@ -255,11 +255,6 @@ class BlogController extends Controller
     
     
     
-    
-    
-    
-    
-    
     //Delete data from 3 table. 
     public function blogDeletePost($id)
     {
@@ -293,6 +288,12 @@ class BlogController extends Controller
 
 
 
+    
+    
+    
+    
+    
+    
     // =====================slider function start===============
     public function slider($id)
     {

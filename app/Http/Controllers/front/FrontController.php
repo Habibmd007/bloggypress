@@ -17,11 +17,11 @@ class FrontController extends Controller
     {   
         $views= BlogPost::where('status', 1)->orderBy('view', 'desc')->take(3)->get();
         $cats= BlogCategory::orderBy('id', 'DESC')->take(4)->get();
-        $featured= BlogPost::where('featured', 1)->first();
-        $home_1st= BlogPost::orderBy('id', 'DESC')->first();
-        $home_2nds= BlogPost::orderBy('id', 'DESC')->skip(1)->take(2)->get();
-        $home_3rds= BlogPost::orderBy('id', 'DESC')->skip(3)->first();
-        $home_4ths= BlogPost::orderBy('id', 'DESC')->skip(4)->take(2)->get();
+        $featured= BlogPost::where('featured', 1)->where('status', 1)->first();
+        $home_1st= BlogPost::where('status', 1)->orderBy('id', 'DESC')->first();
+        $home_2nds= BlogPost::where('status', 1)->orderBy('id', 'DESC')->skip(1)->take(2)->get();
+        $home_3rds= BlogPost::where('status', 1)->orderBy('id', 'DESC')->skip(3)->first();
+        $home_4ths= BlogPost::where('status', 1)->orderBy('id', 'DESC')->skip(4)->take(2)->get();
         return view('frontend.home.blog', compact('views','cats', 'featured', 'feat_cat', 'home_1st','home_2nds', 'home_3rds', 'home_4ths'));
     }
     

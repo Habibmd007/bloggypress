@@ -7,6 +7,7 @@ use App\Http\Controllers\Controller;
 use App\Slider;
 use App\BlogPost;
 use App\BlogPostGallery;
+use Illuminate\Support\Facades\Session;
 
 class BlogFrontController extends Controller
 {
@@ -14,9 +15,16 @@ class BlogFrontController extends Controller
  
     public function blogPost($id)
     {
-        $blogpost= BlogPost::where('id', $id)->where('status', 1)
-        ->orderBy('id', 'DESC')
-        ->first();
+        $blogpost= BlogPost::find($id);
+        // $blogpost= BlogPost::where('id', $id)->where('status', 1)
+        // ->orderBy('id', 'DESC')
+        // ->first();
+        
+        $viewKey=  'view_'.$id;
+        if (!Session::has($viewKey)) {
+            $blogpost->increment('view');
+            Session::put($viewKey, 1);
+        }
 
         $bp_youlikes= BlogPost::where('status', 1)
         ->orderBy('id', 'DESC')
