@@ -289,21 +289,20 @@
                     <div class="links--widget">
                         <ul class="nav">
                             @php
-                            $archive= DB::table('blog_posts')->selectRaw('year(created_at) year, monthname(created_at) month, count(*)')
+                            $archive= DB::table('blog_posts')->selectRaw('year(created_at) year, monthname(created_at) month, count(*) ttl')
                             ->groupBy('year', 'month')
                             ->get();
                             @endphp
 
                             @foreach ($archive as $archiv)
                                 
-                            @endforeach
                             <li>
-                                <a href="#">
-                                    <span class="text">{{$archiv->year. ".". " " }}</span>
-                                    <span class="text">{{ $archiv->month}}</span>
+                                <a href="{{route('archive-posts', ['year' =>$archiv->year, 'month'=>$archiv->month])}}">
+                                    <span class="text">{{$archiv->year. " ". $archiv->month. ' '.$archiv->ttl}}</span>
                                 </a>
                             </li>
                             
+                            @endforeach
                         </ul>
                     </div>
                     <!-- Links Widget End -->

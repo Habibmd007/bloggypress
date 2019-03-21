@@ -147,3 +147,10 @@
                 </ul>
             </div>
         @endif
+
+        @if (Session::has('msg'))
+        <ul>
+            <li>{{Session::get('msg')}}</li>
+        </ul>
+            
+        @endif

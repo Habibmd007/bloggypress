@@ -25,6 +25,8 @@ Route::group(['namespace' => 'front'], function () {
     
     Route::get('/blogpost-new', 'BlogFrontController@blogpostNew')->name('blogpost-new');
     Route::get('/blogpost-old', 'BlogFrontController@blogpostOld')->name('blogpost-old');
+
+    Route::get('/archive-posts/{year}/{month}', 'BlogFrontController@archive')->name('archive-posts');
    
     Route::get('/nextOne/{id}', 'BlogFrontController@nextOne')->name('nextOne');
     Route::get('/oldOne/{id}', 'BlogFrontController@oldOne')->name('oldOne');

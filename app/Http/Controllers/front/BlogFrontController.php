@@ -85,19 +85,28 @@ class BlogFrontController extends Controller
     public function blogpostNew()
     {
         $views= BlogPost::where('status', 1)->orderBy('view', 'desc')->take(3)->get();
-
         $all_posts= BlogPost::orderBy('id', 'DESC')->paginate(4);
+
         return view('frontend.pages.all-blogpost', compact('views','all_posts'));
     }
+
+
     public function blogpostOld()
     {
         $views= BlogPost::where('status', 1)->orderBy('view', 'desc')->take(3)->get();
-
+        
         $all_posts= BlogPost::paginate(4);
         return view('frontend.pages.all-blogpost', compact('views','all_posts'));
     }
-
-   
+    
+    public function archive($year, $month)
+    {
+        $views= BlogPost::where('status', 1)->orderBy('view', 'desc')->take(3)->get();
+        $all_posts= BlogPost::whereYear('created_at', $year)->where('status', 1)->paginate(6);
+        return view('frontend.pages.all-blogpost', compact('views','all_posts'));
+    }
+    
+    
     
     
 }
