@@ -67,12 +67,15 @@
 
                     <!-- Newsletter Widget Start -->
                     <div class="newsletter--widget pb--10 text-center">
-                        <form action="https://themelooks.us13.list-manage.com/subscribe/post?u=79f0b132ec25ee223bb41835f&id=f4e0e93d1d" method="post" name="mc-embedded-subscribe-form" target="_blank" data-form="validate">
-                            <p class="fs--14">Lorem ipsum dolor sit amet, consectetur adipisicing elit.</p>
-
-                            <input type="email" name="EMAIL" placeholder="Your E-mail" class="form-control" autocomplete="off" required>
-
-                            <button type="submit" class="btn btn-default">Subscribe Now</button>
+                        <form action="{{route('subscribe')}}" method="post" name="mc-embedded-subscribe-form"  data-form="validate">
+                            @csrf
+                            <div class="input-group">
+                                <input type="email" name="user_email" placeholder="Your Email" id="exampleInputEmail" class="form-control" required>
+            
+                                <div class="input-group-btn">
+                                    <button type="submit" class="btn btn-primary">Subscribe Now</button>
+                                </div>
+                            </div>
                         </form>
                     </div>
                     <!-- Newsletter Widget End -->

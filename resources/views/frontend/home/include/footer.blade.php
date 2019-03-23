@@ -88,15 +88,17 @@
         <div class="subscribe--form text-center">
             <h2 class="h5 text-primary">Subscribe For My Newsletter</h2>
 
-            <form action="https://themelooks.us13.list-manage.com/subscribe/post?u=79f0b132ec25ee223bb41835f&id=f4e0e93d1d" method="post" name="mc-embedded-subscribe-form" target="_blank" data-form="validate">
+            <form action="{{route('subscribe')}}" method="post" name="mc-embedded-subscribe-form"  data-form="validate">
+                @csrf
                 <div class="input-group">
-                    <input type="email" name="EMAIL" placeholder="Your Email" class="form-control" autocomplete="off" required>
+                    <input type="email" name="user_email" placeholder="Your Email" id="exampleInputEmail" class="form-control" required>
 
                     <div class="input-group-btn">
                         <button type="submit" class="btn btn-primary">Subscribe Now</button>
                     </div>
                 </div>
             </form>
+       
         </div>
         <!-- Subscribe Form End -->
     </div>

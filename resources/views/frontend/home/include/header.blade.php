@@ -149,8 +149,7 @@
         @endif
 
         @if (Session::has('msg'))
-        <ul>
-            <li>{{Session::get('msg')}}</li>
-        </ul>
+        <h2>{{Session::get('msg')}}</h2>
+        
             
         @endif

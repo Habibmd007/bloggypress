@@ -33,6 +33,7 @@ Route::group(['namespace' => 'front'], function () {
     
     Route::get('/blog-post/{id}', 'BlogFrontController@blogPost')->name('blog-post');
     Route::get('/post-bycat/{id}', 'FrontController@postBycat')->name('post-bycat');
+    Route::post('/subscribe', 'FrontController@newsletter')->name('subscribe');
 
     // ==========search===========
     Route::post('/search', 'SearchController@index')->name('search');

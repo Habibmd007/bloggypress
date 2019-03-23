@@ -10,6 +10,7 @@ use App\Info;
 use App\BlogCategory;
 use App\BlogPost;
 use Illuminate\Support\Facades\Mail;
+use Newsletter;
 
 class FrontController extends Controller
 {
@@ -57,12 +58,6 @@ class FrontController extends Controller
         return view('frontend.pages.author', compact('views','bio', 'author_posts'));
     }
 
-    // public function aboutAuthor($id)
-    // {
-    //     $bio=  Bio::find($id);
-    //     return view('admin.about.bio',compact('bio'));
-    // }
-
 
 
 
@@ -104,5 +99,15 @@ class FrontController extends Controller
 
 
         
+    }
+
+
+    public function newsletter(Request $request)
+    {
+        if ( ! Newsletter::isSubscribed($request->user_email) ) {
+            Newsletter::subscribePending($request->user_email);
+            return redirect()->back()->with('msg', 'Please verify your email to Subscribe');
+        }
+        return redirect()->back()->with('msg', 'You all ready subscribed');
     }
 }
